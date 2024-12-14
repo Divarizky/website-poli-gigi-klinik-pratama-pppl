@@ -54,7 +54,6 @@ $isDoctor = $type === 'dokter';
                         <form action="../config/process_add_data.php" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="type" value="<?php echo $type; ?>">
                             <div class="row">
-                                <!-- Pasien -->
                                 <div class="col-lg-9">
                                     <div class="mb-3">
                                         <label for="name" class="form-label"><?php echo $isDoctor ? 'NAMA DOKTER' : 'NAMA PASIEN'; ?> *</label>
@@ -76,13 +75,13 @@ $isDoctor = $type === 'dokter';
                                     </div>
                                 </div>
 
-                                <!-- Dokter -->
                                 <?php if ($isDoctor): ?>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="photo" class="form-label">UPLOAD FOTO *</label>
-                                            <input type="file" name="photo" class="form-control" id="photo" required>
+                                            <input type="file" name="photo" class="form-control" id="photo" required onchange="previewPhoto(event)">
                                             <small class="text-danger">Max Size 5Mb, ext. png, jpg, jpeg</small>
+                                            <img id="photo-preview" src="#" alt="Pratinjau Foto" style="display:none; width: 250px; height: 250px; margin-top: 10px;">
                                         </div>
                                     </div>
                                 <?php endif; ?>
@@ -102,7 +101,7 @@ $isDoctor = $type === 'dokter';
     <script src="https://cdn.jsdelivr.net/npm/summernote/dist/summernote-lite.min.js"></script>
     <script>
         $(document).ready(function() {
-            $(' .summernote').summernote({
+            $('.summernote').summernote({
                 placeholder: 'Masukkan Deskripsi...',
                 tabsize: 2,
                 height: 200,
@@ -116,6 +115,16 @@ $isDoctor = $type === 'dokter';
                 ]
             });
         });
+
+        function previewPhoto(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('photo-preview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
     </script>
 </body>
 

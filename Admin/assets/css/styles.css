@@ -594,3 +594,31 @@ header {
 .submit-button:hover {
     opacity: 0.8;
 }
+
+/* ==========================================
+  Styling untuk Halaman Ubah Data
+========================================== */
+
+#heading-ubah-data-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+#heading-ubah-data-title .sub-heading-ubah-data {
+    font-weight: bold;
+}
+
+#heading-ubah-data-title a {
+    opacity: 50%;
+    color: #757575;
+    text-decoration: none;
+}
+
+#heading-ubah-data-title a:hover {
+    text-decoration: underline;
+}
+
+#heading-ubah-data-title span:last-child {
+    color: #9935D5;
+    font-weight: bold;
+}
