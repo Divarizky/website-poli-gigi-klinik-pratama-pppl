@@ -20,7 +20,7 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="../admin-poli-gigi/assets/css/styles.css">
+    <link rel="stylesheet" href="../Admin/assets/css/styles.css">
 </head>
 
 <body>
@@ -39,13 +39,13 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
         <div class="main-content" id="main-content">
             <div class="main-header" id="main-header">
                 <h1 id="welcome-message">Selamat Datang, <?php echo $_SESSION['username']; ?>!</h1>
-                <a href="../admin-poli-gigi/config/logout.php" class="btn-logout" id="logout-btn">Logout</a>
+                <a href="../Admin/config/logout.php" class="btn-logout" id="logout-btn">Logout</a>
             </div>
 
-            <!-- Daftar Dokter -->
+            <!-- Tabel Dokter -->
             <section id="doctor-section" class="container-section">
                 <h2 id="doctor-title">Daftar Dokter</h2>
-                <button class="btn-add" id="add-doctor-btn" onclick="window.location.href='../admin-poli-gigi/pages/tambah_data.php?type=dokter'">Tambah Data</button>
+                <button class="btn-add" id="add-doctor-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=dokter'">Tambah Data</button>
                 <div class="table-responsive" id="doctor-table-container">
                     <table class="custom-table" id="doctor-table">
                         <thead>
@@ -85,8 +85,8 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
 
                                     // Aksi untuk mengedit atau menghapus
                                     echo "<td>
-                                    <button class='btn-update' onclick=\"window.location.href='ubah_data.php?id=" . $dokter['id_dokter'] . "'\">Update</button>
-                                    <button class='btn-delete' onclick=\"if(confirm('Yakin ingin menghapus?')) window.location.href='hapus_data.php?id=" . $dokter['id_dokter'] . "'\">Delete</button>
+                                    <button class='btn-update' onclick=\"window.location.href='../Admin/pages/ubah_data.php?id=" . $dokter['id_dokter'] . "&type=dokter'\">Update</button>
+                                    <button class='btn-delete' onclick=\"if(confirm('Yakin ingin menghapus?')) window.location.href='../Admin/config/process_delete_data.php?id=" . $dokter['id_dokter'] . "&type=dokter'\">Delete</button>
                                     </td>";
                                     echo "</tr>";
                                 }
@@ -99,10 +99,10 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
                 </div>
             </section>
 
-            <!-- Daftar Pasien -->
+            <!-- Tabel Pasien -->
             <section id="patient-section" class="container-section">
                 <h2 id="patient-title">Daftar Pasien</h2>
-                <button class="btn-add" id="add-patient-btn" onclick="window.location.href='../admin-poli-gigi/pages/tambah_data.php?type=pasien'">Tambah Data</button>
+                <button class="btn-add" id="add-patient-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=pasien'">Tambah Data</button>
                 <div class="table-responsive" id="patient-table-container">
                     <table class="custom-table" id="patient-table">
                         <thead>
@@ -136,8 +136,8 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
                                     echo "<td>" . $pasien['kategori'] . "</td>";
                                     echo "<td>" . $pasien['nama_dokter'] . "</td>";
                                     echo "<td>
-                                    <a href='edit_pasien.php?id=" . $pasien['id_pasien'] . "'>Edit</a> | 
-                                    <a href='hapus_pasien.php?id=" . $pasien['id_pasien'] . "' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
+                                    <a href='../Admin/pages/ubah_pasien.php?id=" . $pasien['id_pasien'] . "&type=pasien'>Edit</a> | 
+                                    <a href='../Admin/config/process_delete_data.php?id=" . $pasien['id_pasien'] . "&type=pasien' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
                                     </td>";
                                     echo "</tr>";
                                 }

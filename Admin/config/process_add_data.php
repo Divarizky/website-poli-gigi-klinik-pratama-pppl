@@ -23,7 +23,7 @@ if ($type === 'dokter') {
                 VALUES ('$name', '$photoPath', '$hari_praktik', '$jam_praktik', NOW())";
 
         if ($conn->query($sql)) {
-            echo "<script>alert('Data Dokter berhasil ditambahkan!'); window.location.href = '../pages/index.php';</script>";
+            echo "<script>alert('Data Dokter berhasil ditambahkan!'); window.location.href = '../index.php';</script>";
         } else {
             echo "<script>alert('Terjadi kesalahan saat menambahkan data dokter!'); window.history.back();</script>";
         }
@@ -44,7 +44,7 @@ elseif ($type === 'pasien') {
 
     // Menyimpan data pasien ke database
     $sql = "INSERT INTO tb_pasien (tanggal_kunjungan, nama_pasien, usia, jenis_kelamin, kategori, id_dokter)
-VALUES ('$tanggal_kunjungan', '$nama_pasien', $usia, '$jenis_kelamin', '$kategori', $id_dokter)";
+    VALUES ('$tanggal_kunjungan', '$nama_pasien', $usia, '$jenis_kelamin', '$kategori', $id_dokter)";
 
     if ($conn->query($sql)) {
         echo "<script>
