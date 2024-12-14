@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buat Akun - Poli Gigi Pratama</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+    <div class="register-form-container">
+        <h2 class="register-heading">Buat Akun Baru</h2>
+        <p>Silakan isi data di bawah untuk membuat akun baru.</p>
+        <form method="POST" action="../config/process_register.php">
+            <label for="name" class="register-label">Nama</label>
+            <input type="text" id="name" name="name" placeholder="Masukkan nama Anda" class="register-input" required>
+
+            <label for="username" class="register-label">Username</label>
+            <input type="text" id="username" name="username" placeholder="Masukkan username" class="register-input"
+                required>
+
+            <label for="password" class="register-label">Password</label>
+            <input type="password" id="password" name="password" placeholder="Masukkan password" class="register-input"
+                required>
+
+            <button type="submit" class="register-button">Daftar</button>
+
+            <div class="register-options">
+                <a href="../pages/login.html" class="register-link">Kembali ke Login</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

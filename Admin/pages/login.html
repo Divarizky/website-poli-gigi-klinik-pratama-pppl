@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Login - Poli Gigi</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+    <div class="login-form-container">
+        <h2 class="login-heading">Halaman Login <br>Poli Gigi Klinik Pratama</h2>
+        <form method="POST" action="../config/process_login.php" class="login-form">
+            <label for="login-username" class="login-label">USERNAME</label>
+            <input type="text" id="login-username" name="username" class="login-input" placeholder="Masukkan username"
+                required>
+            <label for="login-password" class="login-label">PASSWORD</label>
+            <input type="password" id="login-password" name="password" class="login-input"
+                placeholder="Masukkan password" required>
+            <button type="submit" class="login-button">Login</button>
+            <div class="login-options">
+                <a href="../pages/register.html" class="login-link">Buat Akun</a> |
+                <a href="../pages/forgot_password.html" class="login-link">Lupa Password</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

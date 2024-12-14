@@ -1,0 +1,207 @@
+  /*home*/
+/* Left Section Styling */
+.info-card {
+  background-color: #9935D5; /* Purple background */
+  border-radius: 15px; /* Rounded corners */
+  padding: 30px; /* Padding for spacing */
+  color: white; /* White text */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin-left: 20px; /* Added left margin for spacing */
+  margin-right: 20px; /* Added right margin for spacing */
+}
+
+.info-card p {
+  margin: 0 0 10px; /* Reduce spacing between paragraphs */
+}
+
+.info-card h1 {
+  font-weight: bold;
+  margin-bottom: 15px; /* Add spacing after the heading */
+  color: white;
+}
+
+/* Right Section Styling */
+.icon-home {
+  text-align: center; /* Center-align the icons and text */
+}
+
+.icon-home img {
+  width: 60px; /* Size of the icon */
+  margin-bottom: 10px; /* Space below the icon */
+}
+
+.icon-home h6 {
+  font-weight: bold;
+  color: #8A2BE2; /* Purple text */
+  margin-bottom: 5px; /* Add spacing below heading */
+}
+
+.icon-home p {
+  color: #5E4B7A; /* Soft purple for descriptions */
+  font-size: 14px; /* Smaller font for the paragraph */
+  margin: 0; /* Remove default margins */
+}
+
+/* General Styling */
+.home {
+  padding-top: 30px; /* Add top padding */
+  padding-left: 30px; /* Add padding to the left for overall spacing */
+  padding-right: 30px; /* Add padding to the right for overall spacing */
+}
+
+.row.g-4 {
+  row-gap: 30px; /* Gap between rows */
+}
+
+/* Left and Right Column Spacing */
+.col-lg-6 {
+  padding-left: 15px; /* Add padding inside the left and right columns */
+  padding-right: 15px;
+}
+
+  /*Jadwal Tabel*/
+  /* Container styling for the table */
+  .jadwal-page {
+    padding: 30px;
+  }
+
+  /* Headline styling */
+  .jadwal-page h1 {
+    color: #8A2BE2; /* Purple text color for the heading */
+    font-weight: bold; /* Bold font */
+    font-size: 28px;
+    margin-bottom: 20px; /* Space below the heading */
+    padding-left: 15px; /* Add padding inside the left and right columns */
+    padding-right: 15px;
+  }
+
+  .jadwal-table {
+    border-radius: 15px;
+    padding-left: 15px; /* Add padding inside the left and right columns */
+    padding-right: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+  
+  /* Table styling */
+  .table {
+    border-collapse: separate; /* Allow for rounded corners */
+    border-spacing: 0; /* Remove gaps between cells */
+    width: 100%; /* Full width of the container */
+    text-align: left; /* Align text to the left */
+  }
+  
+  /* Header styling */
+  .table thead th {
+    background-color: #8A2BE2;
+    /*Purplebackgroundfortheheader*/color: white;
+    /*Whitetext*/font-weight: bold;
+    padding: 15px;
+    text-align: left;
+}
+  
+  /* Body row styling */
+  .table tbody td {
+    color: #5E4B7A; /* Dark purple text for body rows */
+    padding: 15px; /* Padding for space between cells */
+    vertical-align: middle; /* Align content vertically in the middle */
+  }
+  
+  /* Add border between rows */
+  .table tbody tr:not(:last-child) {
+    border-bottom: 1px solid #d3c2f3; /* Subtle border between rows */
+  }
+  
+  /* Button styling */
+  .custom-button {
+    background-color: white; /* White background for buttons */
+    color: #8A2BE2; /* Purple text for the buttons */
+    font-weight: bold;
+    border: none; /* No borders on the button */
+    padding: 8px 15px; /* Padding for a neat button size */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  .custom-button:hover {
+    background-color: #6a0dad; /* Darker purple when hovered */
+    color: white; /* White text when hovered */
+  }
+  
+  /* Adjust corners for the last row */
+  .jadwal-table .table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px; /* Round bottom-left corner */
+  }
+  
+  .jadwal-table .table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px; /* Round bottom-right corner */
+  }
+  
+
+/*Konsultasi Section*/
+
+.konsultasi {
+    padding-bottom: 80px;
+  }
+  
+  .custom-konsul {
+    background-color: #AA00FF;
+    padding: 30px;
+    border-radius: 8px;
+    color: white;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+  }
+
+  .konsultasi-card {
+    background-color: #AA00FF; /* Purple background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 30px; /* Padding for spacing */
+    color: white; /* White text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-left: 20px; /* Added left margin for spacing */
+    margin-right: 20px; /* Added right margin for spacing */
+  }
+
+  .konsultasi-card h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 24px;
+  }
+
+  .konsultasi-card p {
+    margin-bottom: 0px;
+  }
+
+  /* .custom-konsul h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+    font-size: large;
+  }
+  
+  .custom-konsul p {
+    margin-bottom: 0;
+    font-size: small;
+  } */
+  
+  .custom-button {
+    background-color: white;
+    color: #AA00FF; /* Purple color */
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .custom-button:hover {
+    background-color: #6a0dad; /* Darker purple when hovered */
+    color: white;
+  }
+

@@ -1,0 +1,596 @@
+/* ==========================================
+  Styling untuk Halaman Index
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    flex-wrap: wrap;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #9935D5;
+        color: white;
+        padding: 20px;
+        width: 250px; /* Lebar default sidebar */
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: fixed; /* Agar sidebar tetap di posisi */
+        top: 0;
+        left: 0;
+        box-sizing: border-box; /* Menghindari padding merusak layout */
+        transition: all 0.2s ease; /* Animasi ketika layout berubah */
+}
+
+#logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#sidebar-nav {
+    width: 100%;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#sidebar-nav li {
+    margin: 10px 0;
+}
+
+#sidebar-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#sidebar-nav a:hover {
+    background-color: #7a2bbd;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+        /* Memberikan margin untuk menghindari konten tertimpa sidebar */
+        flex-grow: 1;
+        /* Konten utama akan mengisi ruang yang tersedia */
+        padding: 20px;
+        box-sizing: border-box;
+        /* Agar padding tidak mempengaruhi lebar */
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#welcome-message {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.btn-logout {
+    padding: 10px 20px;
+    background-color: #9935D5;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-logout:hover {
+    background-color: #7a2bbd;
+}
+
+/* Section Title */
+#doctor-title,
+#patient-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #9935D5;
+    margin-bottom: 15px;
+}
+
+/* Button Add */
+.btn-add {
+    background-color: #9935D5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.btn-add:hover {
+    background-color: #7a2bbd;
+}
+
+/* Table */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.custom-table th {
+    background-color: #9935D5;
+    color: white;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Container Section for Daftar Dokter and Daftar Pasien */
+.container-section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+/* Responsive Table */
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Styling untuk tombol Update dan Delete */
+.btn-update {
+    background-color: #4CAF50;
+    /* Warna hijau */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-delete {
+    background-color: #f44336;
+    /* Warna merah */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn-update:hover,
+.btn-delete:hover {
+    opacity: 0.8;
+}
+
+/* Responsif: Sidebar pada layar kecil */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
+        /* Mengurangi lebar sidebar pada perangkat dengan layar lebih kecil */
+    }
+
+    .main-content {
+        margin-left: 200px;
+        /* Menyesuaikan margin konten dengan ukuran sidebar */
+    }
+}
+
+/* Responsif untuk perangkat mobile: Lebar Sidebar akan lebih kecil */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+        /* Sidebar dan konten utama akan berada dalam kolom */
+    }
+
+    .sidebar {
+        width: 100%;
+        /* Sidebar mengisi lebar layar */
+        position: relative;
+        /* Sidebar akan bergerak bersama konten pada layar kecil */
+        height: auto;
+        /* Sidebar tidak perlu tinggi tetap */
+        padding: 15px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        /* Konten utama tidak membutuhkan margin kiri pada perangkat mobile */
+        padding: 15px;
+    }
+
+    .main-header {
+        margin-top: 20px;
+        /* Memberikan jarak pada header agar tidak tertimpa sidebar */
+        width: 100%;
+        /* Main header akan mengisi lebar layar */
+    }
+
+    .custom-table th,
+    .custom-table td {
+        padding: 10px;
+        /* Menyesuaikan padding pada tabel */
+    }
+
+    .container-section {
+        padding: 15px;
+        /* Menyesuaikan padding container */
+    }
+}
+
+/* Untuk perangkat yang lebih kecil dari 480px (Mobile Phone) */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        /* Sidebar akan mengisi seluruh layar */
+    }
+
+    .main-content {
+        margin-left: 0;
+        /* Konten utama mengisi layar penuh */
+    }
+
+    .main-header {
+        margin-top: 20px;
+        /* Memberikan ruang agar header tidak tertimpa sidebar */
+    }
+}
+
+
+/* ==========================================
+  Styling untuk Halaman Login
+========================================== */
+
+/* Container untuk form login */
+.login-form-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 100px;
+    /* Menambahkan margin atas agar form lebih terpusat */
+}
+
+/* Styling judul */
+.login-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    /* Menambah jarak bawah agar lebih rapi */
+    color: #333;
+}
+
+/* Styling label dan input */
+.login-label {
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
+    color: #555;
+    font-size: 14px;
+}
+
+.login-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Button styling */
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #9935D5;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+    /* Menambah jarak bawah button */
+}
+
+.login-button:hover {
+    background-color: #771ab1;
+}
+
+/* Styling untuk link opsional */
+.login-options {
+    margin-top: 20px;
+}
+
+.login-link {
+    font-size: 14px;
+    color: #9935D5;
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Login Form */
+@media (max-width: 768px) {
+    .login-form-container {
+        padding: 25px;
+    }
+
+    .login-heading {
+        font-size: 22px;
+    }
+
+    .login-input {
+        padding: 10px;
+    }
+
+    .login-button {
+        padding: 10px;
+    }
+}
+
+/* ==========================================
+  Styling untuk Halaman Register dan Lupa Password
+========================================== */
+
+/* Container untuk form Register dan Lupa Password */
+.register-form-container,
+.forgot-password-form-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 100px;
+    /* Menambahkan margin atas agar form lebih terpusat */
+}
+
+/* Styling judul untuk Register dan Lupa Password */
+.register-heading,
+.forgot-password-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Styling label dan input untuk Register dan Lupa Password */
+.register-label,
+.forgot-password-label {
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
+    color: #555;
+    font-size: 14px;
+}
+
+.register-input,
+.forgot-password-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Button styling untuk Register dan Lupa Password */
+.register-button,
+.forgot-password-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #9935D5;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+    /* Menambah jarak bawah button */
+}
+
+.register-button:hover,
+.forgot-password-button:hover {
+    background-color: #771ab1;
+}
+
+/* Styling untuk link opsional pada Register dan Lupa Password */
+.register-options,
+.forgot-password-options {
+    margin-top: 20px;
+}
+
+.register-link,
+.forgot-password-link {
+    font-size: 14px;
+    color: #9935D5;
+    text-decoration: none;
+}
+
+.register-link:hover,
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Form untuk Register dan Lupa Password */
+@media (max-width: 768px) {
+
+    .register-form-container,
+    .forgot-password-form-container {
+        padding: 25px;
+    }
+
+    .register-heading,
+    .forgot-password-heading {
+        font-size: 22px;
+    }
+
+    .register-input,
+    .forgot-password-input {
+        padding: 10px;
+    }
+
+    .register-button,
+    .forgot-password-button {
+        padding: 10px;
+    }
+}
+
+/* ==========================================
+  Styling untuk Halaman Tambah Data
+========================================== */
+
+header {
+    margin-bottom: 20px;
+    /* Memberikan jarak bawah */
+}
+
+#heading-tambah-data-title {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+#heading-tambah-data-title .sub-heading-tambah-data {
+    font-weight: bold;
+}
+
+#heading-tambah-data-title a {
+    opacity: 50%;
+    color: #757575;
+    text-decoration: none;
+}
+
+#heading-tambah-data-title a:hover {
+    text-decoration: underline;
+}
+
+#heading-tambah-data-title span:last-child {
+    color: #9935D5;
+    font-weight: bold;
+}
+
+.form-label {
+    color: #A16DD6;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+}
+
+.summernote {
+    height: 150px;
+}
+
+.mb-3 {
+    margin-bottom: 16px;
+}
+
+.text-danger {
+    color: #d9534f;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* Menambahkan jarak antar kolom */
+}
+
+.col-lg-9,
+.col-lg-3 {
+    flex: 1;
+    /* Membuat kolom berukuran fleksibel */
+}
+
+.col-lg-9 {
+    max-width: 75%;
+}
+
+.col-lg-3 {
+    max-width: 25%;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.cancel-button {
+    background-color: #FF3E25;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-button {
+    background-color: #9935D5;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-button:hover,
+.submit-button:hover {
+    opacity: 0.8;
+}

@@ -1,0 +1,72 @@
+  /* Custom CSS */
+  .card-custom {
+    background-color: #9935D5; /* Warna ungu seperti gambar */
+    border-radius: 15px; /* Membuat sudut kartu menjadi melengkung */
+    padding: 30px; /* Memberikan ruang di dalam kartu */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .card-custom h6 {
+    font-size: 14px; /* Ukuran teks kecil untuk subjudul */
+    text-transform: capitalize; /* Huruf kapital untuk subjudul */
+    margin-bottom: 10px; /* Memberikan jarak bawah */
+    color: white;
+  }
+  
+  .card-custom h2 {
+    font-size: 32px; /* Ukuran teks besar untuk judul */
+    font-weight: bold; /* Menegaskan judul */
+    color: white;
+    margin-bottom: 15px;
+    margin-top: 10px;
+  }
+
+  .card-custom p {
+    margin: 0 0 10px;
+    color: white;
+  }
+  
+  .icon-placeholder {
+    background-color: #e0e0e0; /* Warna abu-abu untuk placeholder */
+    border-radius: 10px; /* Sudut melengkung untuk placeholder */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px; /* Tinggi placeholder */
+  }
+  
+  .icon-placeholder img {
+    max-width: 50%; /* Mengatur ukuran gambar placeholder agar proporsional */
+  }
+  
+  /* Memberikan jarak kiri dan kanan */
+  .about {
+    padding-left: 15px; /* Jarak kiri */
+    padding-right: 15px; /* Jarak kanan */
+  }
+
+  .about h3 {
+    font-size: 24px; /* Ukuran teks untuk subjudul "Mengapa Kami?" */
+    margin-bottom: 15px; /* Jarak bawah untuk subjudul */
+  }
+  
+  .desc {
+    margin-bottom: 20px; /* Jarak bawah untuk deskripsi */
+  }
+
+  .desc p {
+    font-size: 16px; /* Ukuran teks untuk paragraf */
+    line-height: 1.6; /* Memberikan ruang antar baris */
+    color: #555;
+  }
+  
+  @media (min-width: 768px) {
+    /* Jarak lebih besar untuk perangkat dengan lebar layar lebih besar */
+    .about {
+      padding-left: 60px; /* Jarak kiri */
+      padding-right: 60px; /* Jarak kanan */
+    }
+  }
+  
+  

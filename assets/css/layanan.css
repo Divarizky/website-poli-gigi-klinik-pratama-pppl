@@ -1,0 +1,80 @@
+/* Kartu utama (Layanan Poli Gigi) */
+.card-custom {
+    background-color: #9935D5; /* Warna ungu */
+    border-radius: 15px; /* Sudut melengkung */
+    color: white;
+    padding: 20px 30px; /* Jarak dalam */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+  }
+  
+  .card-custom h6 {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  .card-custom h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* Placeholder Gambar */
+  .icon-placeholder {
+    background-color: #e0e0e0;
+    border-radius: 10px; /* Sudut melengkung */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px; /* Tinggi placeholder */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+  }
+  
+  .icon-placeholder img {
+    max-width: 70%; /* Ukuran gambar placeholder */
+  }
+  
+  /* Kartu layanan (Scalling, Tambal Gigi, dll.) */
+  .service-card {
+    border: 2px solid #d4a9f7; /* Warna garis ungu */
+    border-radius: 10px; /* Sudut melengkung */
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s; /* Animasi hover */
+    background-color: #ffffff; /* Warna putih */
+  }
+  
+  .service-card:hover {
+    transform: scale(1.05); /* Perbesar saat hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan saat hover */
+  }
+  
+  .service-card h6 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: black; /* Warna teks */
+  }
+  
+  .service-icon img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    filter: brightness(0.8); /* Sedikit redupkan ikon */
+  }
+  
+  /* Tambahkan jarak margin */
+  .layanan {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  @media (min-width: 768px) {
+    /* Jarak lebih besar pada layar tablet ke atas */
+    .layanan {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+  }
+  
