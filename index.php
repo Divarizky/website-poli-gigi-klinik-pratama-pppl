@@ -27,25 +27,25 @@ include("template/header.php");
         <div class="row g-4">
           <!-- Card 1 -->
           <div class="col-6 icon-home">
-            <img src="https://via.placeholder.com/60" alt="Icon 1">
+            <img src="assets/img/dashboard/patient-1.png" alt="Icon 1">
             <h6>100.000+</h6>
             <p>Pasien Setiap Tahunnya</p>
           </div>
           <!-- Card 2 -->
           <div class="col-6 icon-home">
-            <img src="https://via.placeholder.com/60" alt="Icon 2">
+            <img src="assets/img/dashboard/patient-2.png" alt="Icon 2">
             <h6>> 16 Tahun</h6>
             <p>Memberikan Pelayanan Terbaik</p>
           </div>
           <!-- Card 3 -->
           <div class="col-6 icon-home">
-            <img src="https://via.placeholder.com/60" alt="Icon 3">
+            <img src="assets/img/dashboard/dentist.png" alt="Icon 3">
             <h6>Tim Dokter Gigi</h6>
             <p>Berpengalaman, Lebih dari 150 Spesialis</p>
           </div>
           <!-- Card 4 -->
           <div class="col-6 icon-home">
-            <img src="https://via.placeholder.com/60" alt="Icon 4">
+            <img src="assets/img/dashboard/dental-clinic.png" alt="Icon 4">
             <h6>Memberikan Kenyamanan</h6>
             <p>dan Keamanan dalam Perawatan Gigi</p>
           </div>

@@ -9,7 +9,7 @@
   <meta name="keywords" content="">
 
   <!-- Base URL -->
-  <base href="http://localhost/poli-gigi-pratama/">
+  <base href="http://localhost/website-poli-gigi-klinik-pratama-pppl/">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
