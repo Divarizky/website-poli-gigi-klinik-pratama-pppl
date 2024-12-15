@@ -19,7 +19,7 @@ include("../template/header.php");
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -32,10 +32,54 @@ include("../template/header.php");
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
   <link href="assets/css/kontak.css" rel="stylesheet">
+</head>
 
-  </header>
+<body>
+  <main class="main">
+    <div class="kontak my-5">
+      <div class="container">
+        <div class="row g-4">
+          <!-- Kartu Tim Dokter -->
+          <div class="col-md-8">
+            <div class="card-custom">
+              <h6 class="fw-bold">Kontak</h6>
+              <h2 class="fw-bold">Hubungi Kami</h2>
+              <p>
+                Jika Anda memiliki pertanyaan spesifik tentang kami maupun layanan kami, jangan ragu untuk menghubungi tim Poli Gigi Klinik Pratama. Kami akan dengan senang hati menjawab pertanyaan Anda.
+              </p>
+            </div>
+          </div>
+          <!-- Placeholder Gambar -->
+          <div class="col-md-4">
+            <div class="icon-placeholder">
+              <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="kontak-body">
+      <div class="container">
+        <h1>Kontak Kami</h1>
+        <p>
+          <i class="fas fa-phone"></i> +6281244513562<br>
+          <i class="fas fa-envelope"></i> pratama@mail.com
+        </p><br>
+
+        <p>
+          <h1>Alamat Kami</h1>
+          Jl. Taman Malaka Selatan No. 12-14 RT.2/RW.2<br>
+          Pd. Klp., Kec. Duren Sawit, Kota Jakarta Timur<br>
+          Daerah Khusus Ibukota Jakarta 13450
+        </p><br>
+      </div>
+    </div>
+  </main>
 
   <?php
   include("../template/footer.php");
   ?>
+</body>
+
+</html>
