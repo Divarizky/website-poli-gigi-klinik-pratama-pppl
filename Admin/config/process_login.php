@@ -11,6 +11,7 @@ $admin = verifikasiLogin($username, $password);
 if ($admin) {
     // Login berhasil
     $_SESSION['username'] = $admin['username'];
+    $_SESSION['id_admin'] = $admin['id_admin']; // Menyimpan id_admin dalam sesi
     $_SESSION['expire_time'] = time() + 1800; // 30 menit
     header('Location: ../index.php'); // Mengarahkan ke index.php yang ada di folder terluar
     exit(); // Jangan lupa exit untuk menghentikan script lebih lanjut

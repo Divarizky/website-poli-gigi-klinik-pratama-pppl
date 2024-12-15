@@ -161,6 +161,18 @@ body {
     margin-bottom: 30px;
 }
 
+.preview-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.preview-image:hover {
+    transform: scale(1.5); /* Membesarkan gambar saat dihover */
+}
+
 /* Responsive Table */
 .table-responsive {
     overflow-x: auto;

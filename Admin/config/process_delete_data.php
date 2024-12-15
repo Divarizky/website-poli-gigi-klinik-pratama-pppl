@@ -3,7 +3,7 @@
 session_start();
 if (!isset($_SESSION['username']) || time() > $_SESSION['expire_time']) {
   session_destroy();
-  header('Location: ../pages/login.html');
+  header('Location: ../Admin/pages/login.html');
   exit();
 }
 $_SESSION['expire_time'] = time() + 1800; // Perpanjang sesi 30 menit
@@ -16,6 +16,20 @@ if (isset($_GET['type']) && isset($_GET['id'])) {
   $type = $_GET['type'];
   $id = $_GET['id'];
   if ($type === 'dokter') {
+    // Ambil path foto dari database
+    $sqlSelect = "SELECT foto_dokter FROM tb_dokter WHERE id_dokter = $id";
+    $resultSelect = $conn->query($sqlSelect);
+    if ($resultSelect->num_rows > 0) {
+      $row = $resultSelect->fetch_assoc();
+      $fotoPath = $row['foto_dokter'];
+
+      // Hapus file foto jika ada
+      if (!empty($fotoPath) && file_exists($fotoPath)) {
+        unlink($fotoPath);
+      }
+    }
+
+    // Hapus data dokter dari database
     $sql = "DELETE FROM tb_dokter WHERE id_dokter = $id";
   } else if ($type === 'pasien') {
     $sql = "DELETE FROM tb_pasien WHERE id_pasien = $id";
@@ -23,6 +37,8 @@ if (isset($_GET['type']) && isset($_GET['id'])) {
     echo "<script>alert('Tipe data tidak valid!'); window.history.back();</script>";
     exit();
   }
+
+  // Eksekusi query penghapusan
   if ($conn->query($sql) === TRUE) {
     echo "<script>alert('Data berhasil dihapus!'); window.location.href = '../index.php';</script>";
   } else {

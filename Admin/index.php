@@ -3,9 +3,9 @@
 session_start();
 
 // Mengecek apakah user sudah login atau session timeout
-if (!isset($_SESSION['username']) || time() > $_SESSION['expire_time']) {
+if (!isset($_SESSION['username']) || !isset($_SESSION['id_admin']) || time() > $_SESSION['expire_time']) {
     session_destroy();
-    header('Location: ../pages/login.html'); // Redirect ke halaman login jika belum login atau session habis
+    header('Location: ../Admin/pages/login.html'); // Redirect ke halaman login jika belum login atau session habis
     exit();
 }
 
@@ -45,7 +45,7 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
             <!-- Tabel Dokter -->
             <section id="doctor-section" class="container-section">
                 <h2 id="doctor-title">Daftar Dokter</h2>
-                <button class="btn-add" id="add-doctor-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=dokter'">Tambah Data</button>
+                <button class="btn-add" id="add-doctor-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=dokter'">Tambah Data Dokter</button>
                 <div class="table-responsive" id="doctor-table-container">
                     <table class="custom-table" id="doctor-table">
                         <thead>
@@ -74,8 +74,12 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
                                     echo "<td>" . $no++ . "</td>";
 
                                     // Menampilkan foto dokter jika ada, atau tampilkan placeholder
-                                    $foto = $dokter['foto_dokter'] ? "../assets/images/" . basename($dokter['foto_dokter']) : "../assets/images/placeholder.jpg";
-                                    echo "<td><img src='$foto' alt='Foto Dokter' style='width: 100px; height: auto;'></td>";
+                                    if (!empty($dokter['foto_dokter'])) {
+                                        $photoPath = $dokter['foto_dokter'];
+                                    } else {
+                                        $photoPath = "../assets/images/placeholder.jpg";
+                                    }
+                                    echo "<td><img src='" . $photoPath . "' alt='Foto Dokter' class='preview-image'></td>";
 
                                     // Menampilkan nama, hari praktik, jam praktik, dan tanggal update
                                     echo "<td>" . $dokter['nama_dokter'] . "</td>";
@@ -102,7 +106,7 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
             <!-- Tabel Pasien -->
             <section id="patient-section" class="container-section">
                 <h2 id="patient-title">Daftar Pasien</h2>
-                <button class="btn-add" id="add-patient-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=pasien'">Tambah Data</button>
+                <button class="btn-add" id="add-patient-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=pasien'">Tambah Data Pasien</button>
                 <div class="table-responsive" id="patient-table-container">
                     <table class="custom-table" id="patient-table">
                         <thead>
