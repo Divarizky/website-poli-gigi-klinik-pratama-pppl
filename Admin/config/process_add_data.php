@@ -1,67 +1,81 @@
 <?php
-include 'config_query.php'; // Memastikan koneksi ke database sudah ada
+include 'config_query.php'; // Pastikan koneksi database tersedia
 
-// Ambil data dari form
+// Memulai session
+session_start();
+if (!isset($_SESSION['username']) || !isset($_SESSION['id_admin']) || time() > $_SESSION['expire_time']) {
+    session_destroy();
+    header('Location: ../Admin/pages/login.html');
+    exit();
+}
+$_SESSION['expire_time'] = time() + 1800; // Perpanjang sesi 30 menit
+
+$id_admin = $_SESSION['id_admin'];
 $type = $_POST['type'];
-$name = $_POST['name'];
-$description = $_POST['description'];
 
-// Proses data untuk tipe dokter
-if ($type === 'dokter') {
-    // Ambil data foto dokter
-    $photo = $_FILES['photo'];
-    $hari_praktik = $_POST['hari_praktik'];
-    $jam_praktik = $_POST['jam_praktik'];
-
-    // Tentukan path untuk menyimpan foto dokter di folder 'images'
-    $photoPath = '../assets/images/' . basename($photo['name']);
-
-    // Cek apakah foto berhasil diupload
-    if (move_uploaded_file($photo['tmp_name'], $photoPath)) {
-        // Menyimpan data dokter ke database
-        $sql = "INSERT INTO tb_dokter (nama_dokter, foto_dokter, hari_praktik, jam_praktik, tanggal_update) 
-                VALUES ('$name', '$photoPath', '$hari_praktik', '$jam_praktik', NOW())";
-
-        if ($conn->query($sql)) {
-            echo "<script>alert('Data Dokter berhasil ditambahkan!'); window.location.href = '../pages/index.php';</script>";
-        } else {
-            echo "<script>alert('Terjadi kesalahan saat menambahkan data dokter!'); window.history.back();</script>";
-        }
-    } else {
-        echo "<script>alert('Gagal mengupload foto!'); window.history.back();</script>";
-    }
+// Fungsi untuk format tanggal dari input
+function formatTanggalReservasi($hari, $bulan, $tahun, $jam)
+{
+    // Validasi tanggal
+    $tanggal = "$tahun-$bulan-$hari $jam:00";
+    $date = DateTime::createFromFormat('Y-m-d H:i:s', $tanggal);
+    return $date ? $date->format('Y-m-d H:i:s') : null;
 }
 
 // Proses data untuk tipe pasien
-elseif ($type === 'pasien') {
-    // Ambil data untuk pasien (tanggal, usia, jenis kelamin, dll.)
-    $tanggal_kunjungan = $_POST['tanggal_kunjungan'];
-    $nama_pasien = $_POST['nama_pasien'];
+if ($type === 'pasien') {
+    // Ambil data dari form
+    $nama_pasien = $_POST['name'];
     $usia = $_POST['usia'];
-    $jenis_kelamin = $_POST['jenis_kelamin'];
+    $jenis_kelamin = strtoupper($_POST['jenis_kelamin']); // L/P
     $kategori = $_POST['kategori'];
-    $id_dokter = $_POST['id_dokter']; // ID dokter yang dipilih
+    $id_dokter = $_POST['id_dokter'];
 
-    // Menyimpan data pasien ke database
-    $sql = "INSERT INTO tb_pasien (tanggal_kunjungan, nama_pasien, usia, jenis_kelamin, kategori, id_dokter)
-VALUES ('$tanggal_kunjungan', '$nama_pasien', $usia, '$jenis_kelamin', '$kategori', $id_dokter)";
+    // Ambil tanggal reservasi
+    $hari = $_POST['hari'];
+    $bulan = $_POST['bulan'];
+    $tahun = $_POST['tahun'];
+    $jam = $_POST['jam'];
 
-    if ($conn->query($sql)) {
-        echo "<script>
-    alert('Data Pasien berhasil ditambahkan!');
-    window.location.href = '../index.php';
-</script>";
+    $tanggal_kunjungan = formatTanggalReservasi($hari, $bulan, $tahun, $jam);
+
+    if (!$tanggal_kunjungan) {
+        echo "<script>alert('Tanggal reservasi tidak valid!'); window.history.back();</script>";
+        exit();
+    }
+
+    // Simpan data pasien ke database
+    $sql = "INSERT INTO tb_pasien (id_admin, tanggal_kunjungan, nama_pasien, usia, jenis_kelamin, kategori, id_dokter)
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ississi", $id_admin, $tanggal_kunjungan, $nama_pasien, $usia, $jenis_kelamin, $kategori, $id_dokter);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Data Pasien berhasil ditambahkan!'); window.location.href = '../index.php';</script>";
     } else {
-        echo "<script>
-    alert('Terjadi kesalahan saat menambahkan data pasien!');
-    window.history.back();
-</script>";
+        echo "<script>alert('Terjadi kesalahan saat menambahkan data pasien!'); window.history.back();</script>";
+    }
+}
+
+// Proses data untuk tipe dokter
+elseif ($type === 'dokter') {
+    $nama_dokter = $_POST['name'];
+    $hari_praktik = $_POST['hari_praktik'];
+    $jam_praktik = $_POST['jam_praktik'];
+    $deskripsi_dokter = $_POST['description'];
+
+    $sql = "INSERT INTO tb_dokter (id_admin, nama_dokter, deskripsi_dokter, hari_praktik, jam_praktik, tanggal_update) 
+            VALUES (?, ?, ?, ?, ?, NOW())";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("issss", $id_admin, $nama_dokter, $deskripsi_dokter, $hari_praktik, $jam_praktik);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Data Dokter berhasil ditambahkan!'); window.location.href = '../index.php';</script>";
+    } else {
+        echo "<script>alert('Terjadi kesalahan saat menambahkan data dokter!'); window.history.back();</script>";
     }
 } else {
-    echo "<script>
-    alert('Tipe data tidak valid!');
-    window.history.back();
-</script>";
+    echo "<script>alert('Tipe data tidak valid!'); window.history.back();</script>";
 }
 
 $conn->close();

@@ -1,15 +1,19 @@
 <?php
 // Memulai session
 session_start();
+
 if (!isset($_SESSION['username']) || time() > $_SESSION['expire_time']) {
     session_destroy();
-    header('Location: ../pages/login.html');
+    header('Location: ../Admin/pages/login.html');
     exit();
 }
 $_SESSION['expire_time'] = time() + 1800; // Perpanjang sesi 30 menit
 
 // Include file konfigurasi database
 include '../config/config_query.php';
+
+$sql = "SELECT id_dokter, nama_dokter FROM tb_dokter";
+$result = $conn->query($sql);
 
 // Tentukan tipe data (dokter atau pasien) berdasarkan parameter URL
 $type = isset($_GET['type']) ? $_GET['type'] : 'dokter';
@@ -53,13 +57,63 @@ $isDoctor = $type === 'dokter';
                         <h2 id="doctor-title" class="card-title mb-4">Tambah Data <?php echo ucfirst($type); ?> Baru</h2>
                         <form action="../config/process_add_data.php" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="type" value="<?php echo $type; ?>">
-                            <div class="row">
-                                <!-- Pasien -->
-                                <div class="col-lg-9">
+                            <div class="mb-3">
+                                <label for="name" class="form-label"><?php echo $isDoctor ? 'NAMA DOKTER' : 'NAMA PASIEN'; ?> *</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Masukkan Nama" required>
+                            </div>
+
+                            <!-- Input untuk Pasien -->
+                            <?php if (!$isDoctor): ?>
+                                <div class="input-pasien">
                                     <div class="mb-3">
-                                        <label for="name" class="form-label"><?php echo $isDoctor ? 'NAMA DOKTER' : 'NAMA PASIEN'; ?> *</label>
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Masukkan Nama" required>
+                                        <div class="form-tanggal">
+                                            <label for="tanggal_reservasi" class="form-label">TANGGAL RESERVASI *</label>
+                                            <div class="input-group input-horizontal">
+                                                <input type="text" name="hari" placeholder="Hari" class="form-control input-small" required>
+                                                <input type="text" name="bulan" placeholder="Bulan" class="form-control input-small" required>
+                                                <input type="text" name="tahun" placeholder="Tahun" class="form-control input-small" required>
+                                                <input type="text" name="jam" placeholder="Jam" class="form-control input-small" required>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="form-input-pasien">
+                                        <div class="row-input-pasien">
+                                            <div class="mb-3">
+                                                <label for="usia">USIA *</label>
+                                                <input type="number" name="usia" id="usia" class="form-control" placeholder="Masukkan Usia" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="jenis_kelamin">JENIS KELAMIN *</label>
+                                                <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="form-control" placeholder="L/P" required>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="kategori">KATEGORI *</label>
+                                            <input type="text" name="kategori" id="kategori" class="form-control" placeholder="Kategori" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="dokter" class="form-label">DOKTER *</label>
+                                            <select name="id_dokter" id="dokter" class="form-control" required>
+                                                <option value="">Pilih Dokter</option>
+                                                <?php
+                                                // Perulangan untuk menampilkan data dokter di dropdown
+                                                if ($result && $result->num_rows > 0) {
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        echo "<option value='" . $row['id_dokter'] . "'>" . htmlspecialchars($row['nama_dokter']) . "</option>";
+                                                    }
+                                                } else {
+                                                    echo "<option value=''>Tidak Ada Dokter Tersedia</option>";
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <!-- Input untuk Dokter -->
                                     <?php if ($isDoctor): ?>
                                         <div class="mb-3">
                                             <label for="hari_praktik" class="form-label">HARI PRAKTIK *</label>
@@ -69,20 +123,20 @@ $isDoctor = $type === 'dokter';
                                             <label for="jam_praktik" class="form-label">JAM PRAKTIK *</label>
                                             <input type="text" name="jam_praktik" id="jam_praktik" class="form-control" placeholder="Masukkan Jam Praktik" required>
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="description" class="form-label">ISI DESKRIPSI *</label>
+                                            <textarea class="form-control summernote" name="description" id="description" rows="3" required></textarea>
+                                        </div>
                                     <?php endif; ?>
-                                    <div class="mb-3">
-                                        <label for="description" class="form-label">ISI DESKRIPSI *</label>
-                                        <textarea class="form-control summernote" name="description" id="description" rows="3" required></textarea>
-                                    </div>
                                 </div>
 
-                                <!-- Dokter -->
                                 <?php if ($isDoctor): ?>
                                     <div class="col-lg-3">
                                         <div class="mb-3">
                                             <label for="photo" class="form-label">UPLOAD FOTO *</label>
-                                            <input type="file" name="photo" class="form-control" id="photo" required>
+                                            <input type="file" name="photo" class="form-control" id="photo" required onchange="previewPhoto(event)">
                                             <small class="text-danger">Max Size 5Mb, ext. png, jpg, jpeg</small>
+                                            <img id="photo-preview" src="#" alt="Pratinjau Foto" style="display:none; width: 250px; height: 250px; margin-top: 10px;">
                                         </div>
                                     </div>
                                 <?php endif; ?>
@@ -102,7 +156,7 @@ $isDoctor = $type === 'dokter';
     <script src="https://cdn.jsdelivr.net/npm/summernote/dist/summernote-lite.min.js"></script>
     <script>
         $(document).ready(function() {
-            $(' .summernote').summernote({
+            $('.summernote').summernote({
                 placeholder: 'Masukkan Deskripsi...',
                 tabsize: 2,
                 height: 200,
@@ -116,6 +170,16 @@ $isDoctor = $type === 'dokter';
                 ]
             });
         });
+
+        function previewPhoto(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('photo-preview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
     </script>
 </body>
 
