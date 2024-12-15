@@ -112,37 +112,56 @@ function perbaruiPasswordAdmin($username, $password_baru)
 
 // ------ FUNGSI UNTUK TABEL DOKTER ------
 // Fungsi menambahkan dokter
-function tambahDokter($id_admin, $foto_dokter, $nama_dokter, $hari_praktik, $jam_praktik, $tanggal_update)
+function tambahDokter($id_admin, $foto_dokter, $nama_dokter, $deskripsi_dokter, $hari_praktik, $jam_praktik, $tanggal_update)
 {
     global $conn;
-    $sql = "INSERT INTO tb_dokter (id_admin, foto_dokter, nama_dokter, hari_praktik, jam_praktik, tanggal_update) VALUES ($id_admin, '$foto_dokter', '$nama_dokter', '$hari_praktik', '$jam_praktik', '$tanggal_update')";
-    return $conn->query($sql);
+    $sql = "INSERT INTO tb_dokter (id_admin, foto_dokter, nama_dokter, deskripsi_dokter, hari_praktik, jam_praktik, tanggal_update) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("issssss", $id_admin, $foto_dokter, $nama_dokter, $deskripsi_dokter, $hari_praktik, $jam_praktik, $tanggal_update);
+    return $stmt->execute();
 }
 
 // Fungsi membaca data dokter
 function bacaSemuaDokter()
 {
     global $conn;
-    $sql = "SELECT d.*, a.name
+    $sql = "SELECT d.*, a.name AS admin_name
             FROM tb_dokter d
             JOIN tb_admin a ON d.id_admin = a.id_admin";
     return $conn->query($sql);
 }
 
 // Fungsi memperbarui dokter
-function perbaruiDokter($id_dokter, $foto_dokter, $nama_dokter, $tanggal_update)
+function perbaruiDokter($id_dokter, $foto_dokter, $nama_dokter, $deskripsi_dokter, $hari_praktik, $jam_praktik, $tanggal_update)
 {
     global $conn;
-    $sql = "UPDATE tb_dokter SET foto_dokter='$foto_dokter', nama_dokter='$nama_dokter', tanggal_update='$tanggal_update' WHERE id_dokter=$id_dokter";
-    return $conn->query($sql);
+    if ($foto_dokter) {
+        // Jika foto diupdate
+        $sql = "UPDATE tb_dokter 
+                SET foto_dokter = ?, nama_dokter = ?, deskripsi_dokter = ?, hari_praktik = ?, jam_praktik = ?, tanggal_update = ?
+                WHERE id_dokter = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssssssi", $foto_dokter, $nama_dokter, $deskripsi_dokter, $hari_praktik, $jam_praktik, $tanggal_update, $id_dokter);
+    } else {
+        // Jika foto tidak diupdate
+        $sql = "UPDATE tb_dokter 
+                SET nama_dokter = ?, deskripsi_dokter = ?, hari_praktik = ?, jam_praktik = ?, tanggal_update = ?
+                WHERE id_dokter = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssssi", $nama_dokter, $deskripsi_dokter, $hari_praktik, $jam_praktik, $tanggal_update, $id_dokter);
+    }
+    return $stmt->execute();
 }
 
 // Fungsi menghapus dokter
 function hapusDokter($id_dokter)
 {
     global $conn;
-    $sql = "DELETE FROM tb_dokter WHERE id_dokter=$id_dokter";
-    return $conn->query($sql);
+    $sql = "DELETE FROM tb_dokter WHERE id_dokter = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id_dokter);
+    return $stmt->execute();
 }
 
 // ------ FUNGSI UNTUK TABEL PASIEN ------

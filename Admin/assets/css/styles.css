@@ -180,7 +180,7 @@ body {
 
 /* Styling untuk tombol Update dan Delete */
 .btn-update {
-    background-color: #4CAF50;
+    background-color: #FFCC25;
     /* Warna hijau */
     color: white;
     border: none;
@@ -209,9 +209,12 @@ body {
     border-radius: 4px;
 }
 
-.btn-update:hover,
+.btn-update:hover {
+    background-color: #fbc02d;
+}
+
 .btn-delete:hover {
-    opacity: 0.8;
+    background-color: #d32f2f;
 }
 
 /* Responsif: Sidebar pada layar kecil */
@@ -387,6 +390,7 @@ body {
     }
 }
 
+
 /* ==========================================
   Styling untuk Halaman Register dan Lupa Password
 ========================================== */
@@ -499,6 +503,7 @@ body {
     }
 }
 
+
 /* ==========================================
   Styling untuk Halaman Tambah Data
 ========================================== */
@@ -606,6 +611,60 @@ header {
 .submit-button:hover {
     opacity: 0.8;
 }
+
+/* ======== Tampilan Pasien ======== */
+/* CSS untuk Form Tanggal Reservasi */
+.form-tanggal {
+    color: #A16DD6;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.input-horizontal {
+    display: flex;
+    /* Atur tata letak flexbox */
+    gap: 20px;
+    /* Jarak antar elemen input */
+}
+
+.input-horizontal .input-small {
+    display: block;
+    flex: 1;
+    /* Membuat semua input memiliki ukuran yang sama */
+    max-width: 150px;
+    /* Batasi lebar input */
+}
+
+.form-tanggal label {
+    display: block;
+}
+
+.input-small {
+    padding: 8px;
+    /* Padding input */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-input-pasien {
+    color: #A16DD6;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-input-pasien label {
+    display: block;
+}
+
+/* CSS untuk Form Usia & Jenis Kelamin */
+.row-input-pasien {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 110px;
+    /* Menambahkan jarak antar kolom */
+}
+
 
 /* ==========================================
   Styling untuk Halaman Ubah Data

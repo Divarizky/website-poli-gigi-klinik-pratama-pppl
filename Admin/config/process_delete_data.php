@@ -11,35 +11,49 @@ $_SESSION['expire_time'] = time() + 1800; // Perpanjang sesi 30 menit
 // Include file konfigurasi database
 include '../config/config_query.php';
 
-// Tentukan tipe data (dokter atau pasien) berdasarkan ID
-if (isset($_GET['type']) && isset($_GET['id'])) {
-  $type = $_GET['type'];
-  $id = $_GET['id'];
-  if ($type === 'dokter') {
-    // Ambil path foto dari database
-    $sqlSelect = "SELECT foto_dokter FROM tb_dokter WHERE id_dokter = $id";
-    $resultSelect = $conn->query($sqlSelect);
-    if ($resultSelect->num_rows > 0) {
-      $row = $resultSelect->fetch_assoc();
-      $fotoPath = $row['foto_dokter'];
+// Fungsi untuk menghapus file foto jika ada
+function hapusFoto($fotoName)
+{
+  $filePath = "../assets/images/" . $fotoName; // Path lengkap ke file foto
+  if (!empty($fotoName) && file_exists($filePath)) {
+    unlink($filePath);
+  }
+}
 
-      // Hapus file foto jika ada
-      if (!empty($fotoPath) && file_exists($fotoPath)) {
-        unlink($fotoPath);
-      }
+// Periksa tipe data dan ID
+if (isset($_GET['type'], $_GET['id'])) {
+  $type = $_GET['type'];
+  $id = (int)$_GET['id']; // Cast ID menjadi integer untuk keamanan
+
+  if ($type === 'dokter') {
+    // Ambil path foto dari database sebelum data dihapus
+    $sqlSelect = "SELECT foto_dokter FROM tb_dokter WHERE id_dokter = ?";
+    $stmtSelect = $conn->prepare($sqlSelect);
+    $stmtSelect->bind_param("i", $id);
+    $stmtSelect->execute();
+    $result = $stmtSelect->get_result();
+
+    if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      hapusFoto($row['foto_dokter']); // Hapus file foto jika ada
     }
 
     // Hapus data dokter dari database
-    $sql = "DELETE FROM tb_dokter WHERE id_dokter = $id";
-  } else if ($type === 'pasien') {
-    $sql = "DELETE FROM tb_pasien WHERE id_pasien = $id";
+    $sqlDelete = "DELETE FROM tb_dokter WHERE id_dokter = ?";
+    $stmtDelete = $conn->prepare($sqlDelete);
+    $stmtDelete->bind_param("i", $id);
+  } elseif ($type === 'pasien') {
+    // Hapus data pasien dari database
+    $sqlDelete = "DELETE FROM tb_pasien WHERE id_pasien = ?";
+    $stmtDelete = $conn->prepare($sqlDelete);
+    $stmtDelete->bind_param("i", $id);
   } else {
     echo "<script>alert('Tipe data tidak valid!'); window.history.back();</script>";
     exit();
   }
 
   // Eksekusi query penghapusan
-  if ($conn->query($sql) === TRUE) {
+  if ($stmtDelete->execute()) {
     echo "<script>alert('Data berhasil dihapus!'); window.location.href = '../index.php';</script>";
   } else {
     echo "<script>alert('Terjadi kesalahan saat menghapus data!'); window.history.back();</script>";
@@ -47,3 +61,5 @@ if (isset($_GET['type']) && isset($_GET['id'])) {
 } else {
   echo "<script>alert('ID atau tipe data tidak ditemukan!'); window.history.back();</script>";
 }
+
+$conn->close();

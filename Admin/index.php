@@ -45,7 +45,7 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
             <!-- Tabel Dokter -->
             <section id="doctor-section" class="container-section">
                 <h2 id="doctor-title">Daftar Dokter</h2>
-                <button class="btn-add" id="add-doctor-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=dokter'">Tambah Data Dokter</button>
+                <button class="btn-add" id="add-doctor-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=dokter'">Tambah Data</button>
                 <div class="table-responsive" id="doctor-table-container">
                     <table class="custom-table" id="doctor-table">
                         <thead>
@@ -60,7 +60,6 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
                             </tr>
                         </thead>
                         <tbody id="doctorTable">
-                            <!-- Data dokter akan di-load dari database -->
                             <?php
                             // Menarik data dokter
                             include('config/config_query.php'); // Pastikan koneksi database sudah ada di sini
@@ -73,23 +72,34 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
                                     echo "<tr>";
                                     echo "<td>" . $no++ . "</td>";
 
-                                    // Menampilkan foto dokter jika ada, atau tampilkan placeholder
+                                    // Menampilkan path foto dokter berdasarkan id_dokter
+                                    $photoPath = "../Admin/assets/images/placeholder.jpg"; // Default path jika gambar tidak ditemukan
+
                                     if (!empty($dokter['foto_dokter'])) {
-                                        $photoPath = $dokter['foto_dokter'];
-                                    } else {
-                                        $photoPath = "../assets/images/placeholder.jpg";
+                                        $filePath = "../Admin/assets/images/" . $dokter['foto_dokter'];
+
+                                        // Tambahkan validasi file_exists dan id_dokter
+                                        if (file_exists($filePath)) {
+                                            $photoPath = $filePath; // Path gambar yang valid
+                                        } else {
+                                            // Debugging jika gambar tidak ditemukan
+                                            error_log("File foto tidak ditemukan: " . $filePath);
+                                        }
                                     }
-                                    echo "<td><img src='" . $photoPath . "' alt='Foto Dokter' class='preview-image'></td>";
+
+                                    // Tampilkan foto dalam tabel
+                                    echo "<td><img src='" . htmlspecialchars($photoPath) . "' alt='Foto Dokter' class='preview-image' 
+                                    style='width: 80px; height: 80px; object-fit: cover;'></td>";
 
                                     // Menampilkan nama, hari praktik, jam praktik, dan tanggal update
-                                    echo "<td>" . $dokter['nama_dokter'] . "</td>";
-                                    echo "<td>" . $dokter['hari_praktik'] . "</td>";
-                                    echo "<td>" . $dokter['jam_praktik'] . "</td>";
-                                    echo "<td>" . $dokter['tanggal_update'] . "</td>";
+                                    echo "<td>" . htmlspecialchars($dokter['nama_dokter']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($dokter['hari_praktik']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($dokter['jam_praktik']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($dokter['tanggal_update']) . "</td>";
 
                                     // Aksi untuk mengedit atau menghapus
                                     echo "<td>
-                                    <button class='btn-update' onclick=\"window.location.href='../Admin/pages/ubah_data.php?id=" . $dokter['id_dokter'] . "&type=dokter'\">Update</button>
+                                    <button class='btn-update' onclick=\"window.location.href='../Admin/pages/ubah_data.php?id=" . $dokter['id_dokter'] . "&type=dokter'\">Ubah</button>
                                     <button class='btn-delete' onclick=\"if(confirm('Yakin ingin menghapus?')) window.location.href='../Admin/config/process_delete_data.php?id=" . $dokter['id_dokter'] . "&type=dokter'\">Delete</button>
                                     </td>";
                                     echo "</tr>";
@@ -106,13 +116,13 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
             <!-- Tabel Pasien -->
             <section id="patient-section" class="container-section">
                 <h2 id="patient-title">Daftar Pasien</h2>
-                <button class="btn-add" id="add-patient-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=pasien'">Tambah Data Pasien</button>
+                <button class="btn-add" id="add-patient-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=pasien'">Tambah Data</button>
                 <div class="table-responsive" id="patient-table-container">
                     <table class="custom-table" id="patient-table">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tanggal</th>
+                                <th>Tanggal dan Jam</th>
                                 <th>Nama</th>
                                 <th>Umur</th>
                                 <th>JK</th>
@@ -134,20 +144,21 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
                                     echo "<tr>";
                                     echo "<td>" . $no++ . "</td>";
                                     echo "<td>" . $pasien['tanggal_kunjungan'] . "</td>";
-                                    echo "<td>" . $pasien['nama_pasien'] . "</td>";
-                                    echo "<td>" . $pasien['usia'] . "</td>";
-                                    echo "<td>" . $pasien['jenis_kelamin'] . "</td>";
-                                    echo "<td>" . $pasien['kategori'] . "</td>";
-                                    echo "<td>" . $pasien['nama_dokter'] . "</td>";
+                                    echo "<td>" . htmlspecialchars($pasien['nama_pasien']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($pasien['usia']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($pasien['jenis_kelamin']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($pasien['kategori']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($pasien['nama_dokter']) . "</td>";
                                     echo "<td>
-                                    <a href='../Admin/pages/ubah_pasien.php?id=" . $pasien['id_pasien'] . "&type=pasien'>Edit</a> | 
-                                    <a href='../Admin/config/process_delete_data.php?id=" . $pasien['id_pasien'] . "&type=pasien' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
+                                    <button class='btn-update' onclick=\"window.location.href='../Admin/pages/ubah_data.php?id=" . $pasien['id_pasien'] . "&type=pasien'\">Ubah</button>
+                                    <button class='btn-delete' onclick=\"if(confirm('Yakin ingin menghapus?')) window.location.href='../Admin/config/process_delete_data.php?id=" . $pasien['id_pasien'] . "&type=pasien'\">Delete</button>
                                     </td>";
                                     echo "</tr>";
                                 }
                             } else {
                                 echo "<tr><td colspan='8'>Tidak ada data pasien.</td></tr>";
                             }
+
                             ?>
                         </tbody>
                     </table>

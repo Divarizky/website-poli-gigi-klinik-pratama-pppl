@@ -1,113 +1,81 @@
 <?php
-include 'config_query.php'; // Memastikan koneksi ke database sudah ada
+include 'config_query.php'; // Pastikan koneksi database tersedia
 
 // Memulai session
 session_start();
-
-// Mengecek apakah user sudah login atau session timeout
 if (!isset($_SESSION['username']) || !isset($_SESSION['id_admin']) || time() > $_SESSION['expire_time']) {
     session_destroy();
-    header('Location: ../Admin/pages/login.html'); // Redirect ke halaman login jika belum login atau session habis
+    header('Location: ../Admin/pages/login.html');
     exit();
 }
+$_SESSION['expire_time'] = time() + 1800; // Perpanjang sesi 30 menit
 
-// Perbarui waktu sesi (reset timeout)
-$_SESSION['expire_time'] = time() + 1800; // 30 menit
-
-// Menangkap id_admin dari sesi
 $id_admin = $_SESSION['id_admin'];
-
-// Ambil data dari form
 $type = $_POST['type'];
-$name = $_POST['name'];
-$description = $_POST['description'];
 
-// Fungsi untuk mengupload gambar
-function uploadGambar($file)
+// Fungsi untuk format tanggal dari input
+function formatTanggalReservasi($hari, $bulan, $tahun, $jam)
 {
-    // Memecah nama file dan extension
-    $tmp = explode('.', $file['name']);
-    $ext = end($tmp); // Mengambil extension
-    $filename = $tmp[0]; // Mengambil nilai nama file tanpa extension
-    $allowed_ext = array("png", "jpg", "jpeg"); // Extension file yang diizinkan
+    // Validasi tanggal
+    $tanggal = "$tahun-$bulan-$hari $jam:00";
+    $date = DateTime::createFromFormat('Y-m-d H:i:s', $tanggal);
+    return $date ? $date->format('Y-m-d H:i:s') : null;
+}
 
-    // Cek validasi extension
-    if (!in_array($ext, $allowed_ext)) {
-        echo "<script>alert('Ekstensi file tidak diizinkan! Harus berupa .png, .jpg, atau .jpeg.'); window.history.back();</script>";
-        return false; // Extension tidak diizinkan
+// Proses data untuk tipe pasien
+if ($type === 'pasien') {
+    // Ambil data dari form
+    $nama_pasien = $_POST['name'];
+    $usia = $_POST['usia'];
+    $jenis_kelamin = strtoupper($_POST['jenis_kelamin']); // L/P
+    $kategori = $_POST['kategori'];
+    $id_dokter = $_POST['id_dokter'];
+
+    // Ambil tanggal reservasi
+    $hari = $_POST['hari'];
+    $bulan = $_POST['bulan'];
+    $tahun = $_POST['tahun'];
+    $jam = $_POST['jam'];
+
+    $tanggal_kunjungan = formatTanggalReservasi($hari, $bulan, $tahun, $jam);
+
+    if (!$tanggal_kunjungan) {
+        echo "<script>alert('Tanggal reservasi tidak valid!'); window.history.back();</script>";
+        exit();
     }
 
-    // Cek ukuran gambar dengan maks. ukuran 5mb (dalam byte)
-    if ($file["size"] > 5120000) {
-        echo "<script>alert('Ukuran gambar terlalu besar! Maksimal ukuran 5MB.'); window.history.back();</script>";
-        return false; // Ukuran gambar terlalu besar
-    }
+    // Simpan data pasien ke database
+    $sql = "INSERT INTO tb_pasien (id_admin, tanggal_kunjungan, nama_pasien, usia, jenis_kelamin, kategori, id_dokter)
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ississi", $id_admin, $tanggal_kunjungan, $nama_pasien, $usia, $jenis_kelamin, $kategori, $id_dokter);
 
-    $name = $filename . '_' . rand() . '.' . $ext; // Rename nama file gambar
-    $path = "../assets/images/" . $name; // Lokasi upload file gambar
-    if (move_uploaded_file($file["tmp_name"], $path)) { // Memindahkan file
-        return $path;
+    if ($stmt->execute()) {
+        echo "<script>alert('Data Pasien berhasil ditambahkan!'); window.location.href = '../index.php';</script>";
     } else {
-        echo "<script>alert('Gagal memindahkan file!'); window.history.back();</script>";
-        return false; // Gagal memindahkan file
+        echo "<script>alert('Terjadi kesalahan saat menambahkan data pasien!'); window.history.back();</script>";
     }
 }
 
 // Proses data untuk tipe dokter
-if ($type === 'dokter') {
-    // Ambil data foto dokter
-    $photo = $_FILES['photo'];
+elseif ($type === 'dokter') {
+    $nama_dokter = $_POST['name'];
     $hari_praktik = $_POST['hari_praktik'];
     $jam_praktik = $_POST['jam_praktik'];
+    $deskripsi_dokter = $_POST['description'];
 
-    // Upload gambar
-    $photoPath = uploadGambar($photo);
+    $sql = "INSERT INTO tb_dokter (id_admin, nama_dokter, deskripsi_dokter, hari_praktik, jam_praktik, tanggal_update) 
+            VALUES (?, ?, ?, ?, ?, NOW())";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("issss", $id_admin, $nama_dokter, $deskripsi_dokter, $hari_praktik, $jam_praktik);
 
-    if ($photoPath) {
-        // Menyimpan data dokter ke database
-        $sql = "INSERT INTO tb_dokter (id_admin, nama_dokter, foto_dokter, hari_praktik, jam_praktik, tanggal_update) 
-                VALUES ($id_admin, '$name', '$photoPath', '$hari_praktik', '$jam_praktik', NOW())";
-
-        if ($conn->query($sql)) {
-            echo "<script>alert('Data Dokter berhasil ditambahkan!'); window.location.href = '../index.php';</script>";
-        } else {
-            echo "<script>alert('Terjadi kesalahan saat menambahkan data dokter!'); window.history.back();</script>";
-        }
+    if ($stmt->execute()) {
+        echo "<script>alert('Data Dokter berhasil ditambahkan!'); window.location.href = '../index.php';</script>";
     } else {
-        echo "<script>alert('Gagal mengupload foto! Pastikan file dalam format JPG/PNG dan ukuran kurang dari 5MB.'); window.history.back();</script>";
-    }
-}
-
-// Proses data untuk tipe pasien
-elseif ($type === 'pasien') {
-    // Ambil data untuk pasien (tanggal, usia, jenis kelamin, dll.)
-    $tanggal_kunjungan = $_POST['tanggal_kunjungan'];
-    $nama_pasien = $_POST['nama_pasien'];
-    $usia = $_POST['usia'];
-    $jenis_kelamin = $_POST['jenis_kelamin'];
-    $kategori = $_POST['kategori'];
-    $id_dokter = $_POST['id_dokter']; // ID dokter yang dipilih
-
-    // Menyimpan data pasien ke database
-    $sql = "INSERT INTO tb_pasien (id_admin, tanggal_kunjungan, nama_pasien, usia, jenis_kelamin, kategori, id_dokter)
-    VALUES ($id_admin, '$tanggal_kunjungan', '$nama_pasien', $usia, '$jenis_kelamin', '$kategori', $id_dokter)";
-
-    if ($conn->query($sql)) {
-        echo "<script>
-    alert('Data Pasien berhasil ditambahkan!');
-    window.location.href = '../index.php';
-</script>";
-    } else {
-        echo "<script>
-    alert('Terjadi kesalahan saat menambahkan data pasien!');
-    window.history.back();
-</script>";
+        echo "<script>alert('Terjadi kesalahan saat menambahkan data dokter!'); window.history.back();</script>";
     }
 } else {
-    echo "<script>
-    alert('Tipe data tidak valid!');
-    window.history.back();
-</script>";
+    echo "<script>alert('Tipe data tidak valid!'); window.history.back();</script>";
 }
 
 $conn->close();
