@@ -40,10 +40,19 @@ include("../template/header.php");
     <div class="desc mt-5">
       <h3 class="fw-bold">Mengapa Kami?</h3>
       <p>
-        Klinik Pratama berkomitmen untuk memberikan pelayanan kesehatan gigi yang nyaman dan bebas nyeri. Dengan menggunakan teknologi anestesi terbaru, kami memastikan setiap perawatan bebas rasa sakit untuk kenyamanan pasien.
+        Klinik kami menggunakan teknologi anestesi terbaru yang canggih dan aman untuk memastikan setiap prosedur perawatan gigi bebas dari rasa sakit. Dengan pendekatan ini, kami memprioritaskan kenyamanan pasien selama proses perawatan berlangsung.
       </p>
       <p>
-        Klinik ini juga didesain dengan suasana yang nyaman agar Anda dapat merasa rileks selama menjalani perawatan. Selain itu, untuk mempermudah proses, kami menyediakan layanan reservasi online yang praktis, sehingga Anda dapat membuat janji tanpa perlu datang langsung ke klinik.
+      Klinik kami dirancang dengan desain interior modern yang menciptakan suasana nyaman dan rileks, sehingga Anda merasa lebih tenang saat menjalani perawatan. Lingkungan yang bersih, profesional, dan ramah akan membuat pengalaman berkunjung ke klinik lebih menyenangkan.
+      </p>
+      <p>
+      Tim dokter gigi kami terdiri dari tenaga medis berpengalaman dan terlatih di bidangnya. Dengan pendekatan profesional serta penanganan yang teliti, kami memastikan setiap pasien mendapatkan hasil perawatan terbaik.
+      </p>
+      <p>
+      Kami mengutamakan kualitas perawatan dengan menggunakan teknologi dan peralatan terkini. Ini membantu kami memberikan diagnosis yang akurat dan perawatan yang efektif sesuai kebutuhan pasien.
+      </p>
+      <p>
+      Untuk mempermudah proses perawatan, Klinik Pratama menyediakan layanan reservasi online yang cepat dan praktis. Anda bisa membuat janji kapan saja dan di mana saja, tanpa perlu datang langsung ke klinik, sehingga menghemat waktu dan tenaga Anda.
       </p>
     </div>
   </div>

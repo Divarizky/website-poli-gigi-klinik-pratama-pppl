@@ -1,80 +1,73 @@
 /* Kartu utama (Tim Dokter) */
 .card-custom {
-    background-color: #d4a9f7; /* Warna ungu */
-    border-radius: 15px;
-    color: white;
-    padding: 20px 30px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-custom h6 {
-    font-size: 14px;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  
-  .card-custom h2 {
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  /* Placeholder Gambar */
-  .icon-placeholder {
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 200px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .icon-placeholder img {
-    max-width: 70%;
-  }
-  
-  /* Kartu Dokter */
-  .doctor-card {
-    background-color: #fff;
-    border: 2px solid #d4a9f7; /* Warna ungu */
-    border-radius: 10px;
-    text-align: center;
-    padding: 15px;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .doctor-card:hover {
-    transform: scale(1.05); /* Efek hover */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .doctor-card h6 {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .doctor-card p {
-    font-size: 14px;
-    color: #666;
-  }
-  
-  .doctor-icon img {
-    width: 70px;
-    height: 70px;
-    filter: brightness(0.8);
-  }
-  
-  /* Padding */
-  .dokter {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  
-  @media (min-width: 768px) {
-    .dokter {
-      padding-left: 60px;
-      padding-right: 60px;
-    }
-  }
-  
+  background-color: #9935D5; /* Warna ungu yang lebih mencolok */
+  border-radius: 15px;
+  color: white;
+  padding: 30px 40px; /* Penambahan padding untuk tampilan yang lebih nyaman */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px; /* Jarak antara kartu utama dan elemen lain */
+}
+
+.card-custom h6 {
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.card-custom h2 {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Placeholder Gambar */
+.icon-placeholder {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px; /* Tinggi yang lebih besar untuk placeholder gambar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px; /* Jarak antara placeholder dan elemen lain */
+}
+
+.icon-placeholder img {
+  max-width: 80%; /* Ukuran gambar sedikit lebih besar */
+}
+
+/* Kartu Dokter */
+.doctor-card {
+  background-color: #fff;
+  border: 2px solid #9935D5; /* Warna ungu yang lebih mencolok */
+  border-radius: 10px;
+  text-align: center;
+  padding: 20px; /* Penambahan padding untuk tampilan yang lebih nyaman */
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 20px; /* Jarak antar kartu dokter */
+}
+
+.doctor-card:hover {
+  transform: scale(1.05); /* Efek hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.doctor-card h6 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 10px; /* Jarak antara gambar dan teks */
+}
+
+.doctor-card p {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px; /* Jarak antara judul dan deskripsi */
+}
+
+.doctor-icon img {
+  width: 80px;
+  height: 80px;
+  filter: brightness(0.9); /* Sedikit lebih cerah untuk gambar dokter */
+  border

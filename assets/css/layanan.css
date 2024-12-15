@@ -22,18 +22,22 @@
   
   /* Placeholder Gambar */
   .icon-placeholder {
-    background-color: #e0e0e0;
+    background-color: #ffffff;
     border-radius: 10px; /* Sudut melengkung */
     display: flex;
     align-items: center;
     justify-content: center;
     height: 200px; /* Tinggi placeholder */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
   }
   
   .icon-placeholder img {
-    max-width: 70%; /* Ukuran gambar placeholder */
-  }
+    max-width: 75%;
+    /*Ukurangambarplaceholder*/border-radius: 20px;
+    -webkit-border-radius:;
+    -moz-border-radius:;
+    -ms-border-radius:;
+    -o-border-radius:;
+}
   
   /* Kartu layanan (Scalling, Tambal Gigi, dll.) */
   .service-card {

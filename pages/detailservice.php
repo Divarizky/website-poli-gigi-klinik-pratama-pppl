@@ -1,5 +1,17 @@
 <?php
 include("../template/header.php");
+include("information_service.php"); // Memanggil file yang berisi informasi layanan
+
+// Mendapatkan nama layanan dari query string
+$layanan = $_GET['layanan'] ?? 'Scalling';
+
+// Mengambil detail layanan berdasarkan nama
+$detail = $services[$layanan] ?? null;
+
+if ($detail === null) {
+    echo "Layanan tidak ditemukan.";
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +20,7 @@ include("../template/header.php");
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Klinik Pratama</title>
+  <title>Detail Layanan - Klinik Pratama</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -31,55 +43,33 @@ include("../template/header.php");
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-  <link href="assets/css/kontak.css" rel="stylesheet">
+  <link href="assets/css/layanan.css" rel="stylesheet">
 </head>
 
-<body>
-  <main class="main">
-    <div class="kontak my-5">
-      <div class="container">
-        <div class="row g-4">
-          <!-- Kartu Tim Dokter -->
-          <div class="col-md-8">
-            <div class="card-custom">
-              <h6 class="fw-bold">Kontak</h6>
-              <h2 class="fw-bold">Hubungi Kami</h2>
-              <p>
-                Jika Anda memiliki pertanyaan spesifik tentang kami maupun layanan kami, jangan ragu untuk menghubungi tim Poli Gigi Klinik Pratama. Kami akan dengan senang hati menjawab pertanyaan Anda.
-              </p>
-            </div>
-          </div>
-          <!-- Placeholder Gambar -->
-          <div class="col-md-4">
-            <div class="icon-placeholder">
-              <img src="https://via.placeholder.com/150" alt="Placeholder Image">
-            </div>
-          </div>
+<main class="main">
+
+  <div class="detail-layanan my-5">
+    <div class="row g-4">
+      <div class="col-md-12">
+        <div class="card-custom">
+          <h6 class="fw-bold">Detail Layanan</h6>
+          <h2 class="fw-bold"><?php echo $detail['title']; ?></h2>
+          <p><?php echo $detail['description']; ?></p>
+          <h3>Mengapa <?php echo $layanan; ?>?</h3>
+          <p><?php echo $detail['description']; ?></p>
+          <ul>
+            <?php foreach ($detail['benefits'] as $benefit): ?>
+            <li><?php echo $benefit; ?></li>
+            <?php endforeach; ?>
+          </ul>
+          <button class="btn btn-primary mt-3">Konsultasi Sekarang!</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="kontak-body">
-      <div class="container">
-        <h1>Kontak Kami</h1>
-        <p>
-          <i class="fas fa-phone"></i> +6281244513562<br>
-          <i class="fas fa-envelope"></i> pratama@mail.com
-        </p><br>
-
-        <p>
-          <h1>Alamat Kami</h1>
-          Jl. Taman Malaka Selatan No. 12-14 RT.2/RW.2<br>
-          Pd. Klp., Kec. Duren Sawit, Kota Jakarta Timur<br>
-          Daerah Khusus Ibukota Jakarta 13450
-        </p><br>
-      </div>
-    </div>
-  </main>
+  </body>
 
   <?php
   include("../template/footer.php");
   ?>
-</body>
-
-</html>
