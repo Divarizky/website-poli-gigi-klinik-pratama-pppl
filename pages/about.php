@@ -31,7 +31,7 @@ include("../template/header.php");
       <!-- Gambar Placeholder -->
       <div class="col-md-4">
         <div class="icon-placeholder">
-          <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+          <img src="assets/img/tentang-kami.png" alt="Placeholder Image">
         </div>
       </div>
     </div>

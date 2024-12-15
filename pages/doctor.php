@@ -59,7 +59,7 @@ include("../template/header.php");
       <div class="col-md-2 col-6">
         <div class="doctor-card">
           <div class="doctor-icon">
-            <img src="https://via.placeholder.com/70" alt="Dokter Icon">
+            <img src="assets/img/dashboard/doctor.png" alt="Dokter Icon">
           </div>
           <h6 class="mt-3 fw-bold">Drg. Andi Wijaya</h6>
           <p>Dokter Gigi Umum</p>
@@ -68,7 +68,7 @@ include("../template/header.php");
       <div class="col-md-2 col-6">
         <div class="doctor-card">
           <div class="doctor-icon">
-            <img src="https://via.placeholder.com/70" alt="Dokter Icon">
+            <img src="assets/img/dashboard/doctor.png" alt="Dokter Icon">
           </div>
           <h6 class="mt-3 fw-bold">Drg. Rina Puspita</h6>
           <p>Dokter Gigi Umum</p>
@@ -77,7 +77,7 @@ include("../template/header.php");
       <div class="col-md-2 col-6">
         <div class="doctor-card">
           <div class="doctor-icon">
-            <img src="https://via.placeholder.com/70" alt="Dokter Icon">
+            <img src="assets/img/dashboard/doctor.png" alt="Dokter Icon">
           </div>
           <h6 class="mt-3 fw-bold">Drg. Budi Santoso</h6>
           <p>Dokter Gigi Anak</p>
@@ -86,7 +86,7 @@ include("../template/header.php");
       <div class="col-md-2 col-6">
         <div class="doctor-card">
           <div class="doctor-icon">
-            <img src="https://via.placeholder.com/70" alt="Dokter Icon">
+            <img src="assets/img/dashboard/doctor.png" alt="Dokter Icon">
           </div>
           <h6 class="mt-3 fw-bold">Drg. Tia Marlina</h6>
           <p>Dokter Gigi Umum</p>
@@ -95,7 +95,7 @@ include("../template/header.php");
       <div class="col-md-2 col-6">
         <div class="doctor-card">
           <div class="doctor-icon">
-            <img src="https://via.placeholder.com/70" alt="Dokter Icon">
+            <img src="assets/img/dashboard/doctor.png" alt="Dokter Icon">
           </div>
           <h6 class="mt-3 fw-bold">Drg. Anggi Cahyo</h6>
           <p>Dokter Gigi Anak</p>

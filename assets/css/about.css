@@ -28,7 +28,7 @@
   }
   
   .icon-placeholder {
-    background-color: #e0e0e0; /* Warna abu-abu untuk placeholder */
+    background-color: #ffffff; /* Warna abu-abu untuk placeholder */
     border-radius: 10px; /* Sudut melengkung untuk placeholder */
     display: flex;
     align-items: center;
@@ -37,7 +37,8 @@
   }
   
   .icon-placeholder img {
-    max-width: 50%; /* Mengatur ukuran gambar placeholder agar proporsional */
+    max-width: 75%; /* Mengatur ukuran gambar placeholder agar proporsional */
+    border-radius: 20px;
   }
   
   /* Memberikan jarak kiri dan kanan */
