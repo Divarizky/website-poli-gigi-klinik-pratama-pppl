@@ -365,10 +365,12 @@ h6 {
   }
 
   .navmenu li:hover>a,
-  .navmenu .active,
-  .navmenu .active:focus {
-    color: var(--nav-hover-color);
+
+  .nav-item.active a {
+    font-weight: bold;
+    color: var(--nav-hover-color); /* Contoh warna untuk teks aktif */
   }
+  
 
   .navmenu .dropdown ul {
     margin: 0;

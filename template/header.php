@@ -41,11 +41,19 @@
           <h3 class="sitename">Klinik Medikasih</h3>
         </a>
         <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="pages/about.php" >Tentang Kami</a></li>
-            <li><a href="pages/service.php">Layanan</a></li>
-            <li><a href="pages/doctor.php">Dokter</a></li>
-            <li><a href="pages/contact_us.php">Kontak</a></li>
+          <ul class="nav">
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'about.php' ? 'active' : ''; ?>">
+              <a href="pages/about.php">Tentang Kami</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'service.php' ? 'active' : ''; ?>">
+              <a href="pages/service.php">Layanan</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'doctor.php' ? 'active' : ''; ?>">
+              <a href="pages/doctor.php">Dokter</a>
+            </li>
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'contact_us.php' ? 'active' : ''; ?>">
+              <a href="pages/contact_us.php">Kontak</a>
+            </li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
