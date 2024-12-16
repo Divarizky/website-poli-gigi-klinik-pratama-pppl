@@ -365,6 +365,7 @@ h6 {
   }
 
   .navmenu li:hover>a,
+  
 
   .nav-item.active a {
     font-weight: bold;
@@ -555,6 +556,34 @@ h6 {
     display: block;
   }
 }
+
+.mobile-nav-active .navmenu ul {
+  display: block;
+}
+
+.mobile-nav-active .mobile-nav-toggle {
+  color: #fff;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 32px;
+  z-index: 9999;
+}
+
+.mobile-nav-active .navmenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(33, 37, 41, 0.8);
+  z-index: 9998;
+}
+
+.mobile-nav-active {
+  overflow: hidden;
+}
+
 
 /*--------------------------------------------------------------
 # Global Footer

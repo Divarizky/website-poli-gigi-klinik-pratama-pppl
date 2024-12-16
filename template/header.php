@@ -12,13 +12,13 @@
   <base href="http://localhost/website-poli-gigi-klinik-pratama-pppl/">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/logo.jpg" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,6 +42,9 @@
         </a>
         <nav id="navmenu" class="navmenu">
           <ul class="nav">
+            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">
+              <a href="index.php">Home</a>
+            </li>
             <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'about.php' ? 'active' : ''; ?>">
               <a href="pages/about.php">Tentang Kami</a>
             </li>
@@ -57,7 +60,33 @@
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
-        <a class="cta-btn" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Reservasi</a>
+        <a class="cta-btn" href="#" onclick="openWhatsApp()">Reservasi</a>
+        <script>
+          function openWhatsApp() {
+            window.open('https://wa.me/6282152588142?text=' + encodeURIComponent('Hi, saya ingin Reservasi Layanan:\nNama:\nNo. HP:\nAlamat:\nLayanan:\nJumlah:'), '_blank');
+          }
+        </script>
       </div>
     </div>
   </header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const navToggle = document.querySelector('.mobile-nav-toggle');
+  const navMenu = document.querySelector('.navmenu ul');
+
+  navToggle.addEventListener('click', function () {
+    document.body.classList.toggle('mobile-nav-active');
+  });
+
+  // Close the dropdown when clicking outside
+  document.addEventListener('click', function (event) {
+    if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
+      document.body.classList.remove('mobile-nav-active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
