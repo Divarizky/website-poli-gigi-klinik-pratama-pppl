@@ -40,8 +40,4 @@
 .icon-placeholder img {
   max-width: 80%;/*Ukurangambarsedikitlebihbesar*/
   border-radius: 20px;
-  -webkit-border-radius:;
-  -moz-border-radius:;
-  -ms-border-radius:;
-  -o-border-radius:;
 }

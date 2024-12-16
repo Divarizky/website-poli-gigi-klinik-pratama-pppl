@@ -91,7 +91,9 @@ $layananData = getLayananByType($type);
             <div class="service-icon">
               <img src="<?php echo $layanan['image']; ?>" alt="<?php echo $layanan['name']; ?>">
             </div>
-            <h6><?php echo $layanan['name']; ?></h6>
+            <span class="layanan-title">
+              <h6><?php echo $layanan['name']; ?></h6>
+            </span>
             <p><?php echo $layanan['description']; ?></p>
             <a href="pages/detail_service.php?layanan=<?php echo urlencode($layanan['name']); ?>" class="btn btn-primary mt-3">Lihat Detail</a>
           </div>

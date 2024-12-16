@@ -1,7 +1,7 @@
 <?php
 $services = [
     'Scalling' => [
-        'title' => 'Pembersihan Karang Gigi (Scalling)',
+        'title' => 'Scalling',
         'description' => 'Scaling gigi atau pembersihan gigi oleh dokter gigi profesional adalah prosedur yang direkomendasikan untuk dilakukan secara rutin. Alasan utama untuk melakukan scaling gigi secara teratur adalah untuk menjaga kesehatan gigi dan gusi Anda.',
         'benefits' => [
             'Menghilangkan plak dan karang gigi',
