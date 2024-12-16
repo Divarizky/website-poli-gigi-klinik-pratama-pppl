@@ -42,9 +42,6 @@
         </a>
         <nav id="navmenu" class="navmenu">
           <ul class="nav">
-            <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : ''; ?>">
-              <a href="index.php">Home</a>
-            </li>
             <li class="nav-item <?php echo basename($_SERVER['PHP_SELF']) == 'about.php' ? 'active' : ''; ?>">
               <a href="pages/about.php">Tentang Kami</a>
             </li>
