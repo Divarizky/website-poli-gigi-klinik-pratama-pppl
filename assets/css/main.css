@@ -275,8 +275,8 @@ h6 {
 }
 
 .header .logo img {
-  max-height: 36px;
-  margin-right: 8px;
+  max-height: 50px;
+  margin-right: 50px;
 }
 
 .header .logo h1 {
@@ -300,8 +300,7 @@ h6 {
 .header .cta-btn:hover,
 .header .cta-btn:focus:hover {
   color: var(--contrast-color);
-  background: #000000;
-  opacity: 50%;
+  background: #6a0dad;
 }
 
 /*--------------------------------------------------------------

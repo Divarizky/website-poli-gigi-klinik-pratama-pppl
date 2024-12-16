@@ -34,7 +34,7 @@ $layananData = getLayananByType($type);
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Klinik Pratama</title>
+  <title>Klinik Medikasih</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -67,10 +67,10 @@ $layananData = getLayananByType($type);
       <!-- Kartu Layanan -->
       <div class="col-md-8">
         <div class="card-custom">
-          <h6 class="fw-bold">Layanan</h6>
+          <h6 class="mb-2">Layanan</h6>
           <h2 class="fw-bold">Layanan <?php echo ucfirst(str_replace('-', ' ', $type)); ?></h2>
           <p>
-            Poli Gigi Klinik Pratama hadir dengan misi untuk memberikan pelayanan kesehatan gigi terbaik yang mengutamakan kenyamanan dan keamanan pasien. Tim dokter profesional kami siap membantu Anda dalam menjaga kesehatan gigi dan mulut Anda.
+            Poli Gigi Klinik Medikasih hadir dengan misi untuk memberikan pelayanan kesehatan gigi terbaik yang mengutamakan kenyamanan dan keamanan pasien. Tim dokter profesional kami siap membantu Anda dalam menjaga kesehatan gigi dan mulut Anda.
           </p>
         </div>
       </div>

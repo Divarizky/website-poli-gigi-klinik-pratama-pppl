@@ -5,7 +5,7 @@ include("../template/header.php");
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Klinik Pratama</title>
+  <title>Klinik Medikasih</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -22,9 +22,9 @@ include("../template/header.php");
       <div class="col-md-8">
         <div class="card-custom">
           <h6 class="mb-2">Tentang Kami</h6>
-          <h2 class="fw-bold">Tentang Klinik Pratama</h2>
+          <h2 class="fw-bold">Tentang Klinik Medikasih</h2>
           <p>
-            Poli Gigi Klinik Pratama didirikan dengan visi untuk memberikan pelayanan kesehatan gigi terbaik yang mengutamakan kenyamanan dan keamanan pasien.
+            Poli Gigi Klinik Medikasih didirikan dengan visi untuk memberikan pelayanan kesehatan gigi terbaik yang mengutamakan kenyamanan dan keamanan pasien.
           </p>
         </div>
       </div>

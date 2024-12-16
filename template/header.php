@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Poli Gigi Klinik Pratama</title>
+  <title>Poli Gigi Klinik Medikasih</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -41,7 +41,7 @@
         </a>
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="pages/about.php">Tentang Kami</a></li>
+            <li><a href="pages/about.php" >Tentang Kami</a></li>
             <li><a href="pages/service.php">Layanan</a></li>
             <li><a href="pages/doctor.php">Dokter</a></li>
             <li><a href="pages/contact_us.php">Kontak</a></li>

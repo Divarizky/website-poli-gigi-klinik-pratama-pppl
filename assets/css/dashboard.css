@@ -95,7 +95,7 @@
   
   /* Header styling */
   .table thead th {
-    background-color: #8A2BE2;
+    background-color: #9935D5;
     /*Purplebackgroundfortheheader*/color: white;
     /*Whitetext*/font-weight: bold;
     padding: 15px;
@@ -158,7 +158,7 @@
   }
 
   .konsultasi-card {
-    background-color: #AA00FF; /* Purple background */
+    background-color: #9935D5; /* Purple background */
     border-radius: 15px; /* Rounded corners */
     padding: 30px; /* Padding for spacing */
     color: white; /* White text */

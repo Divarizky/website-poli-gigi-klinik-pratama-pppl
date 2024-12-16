@@ -8,7 +8,7 @@ include("../template/header.php");
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Klinik Pratama</title>
+  <title>Klinik Medikasih</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -42,17 +42,17 @@ include("../template/header.php");
           <!-- Kartu Tim Dokter -->
           <div class="col-md-8">
             <div class="card-custom">
-              <h6 class="fw-bold">Kontak</h6>
+              <h6 class="mb-2">Kontak</h6>
               <h2 class="fw-bold">Hubungi Kami</h2>
               <p>
-                Jika Anda memiliki pertanyaan spesifik tentang kami maupun layanan kami, jangan ragu untuk menghubungi tim Poli Gigi Klinik Pratama. Kami akan dengan senang hati menjawab pertanyaan Anda.
+                Jika Anda memiliki pertanyaan spesifik tentang kami maupun layanan kami, jangan ragu untuk menghubungi tim Poli Gigi Klinik Medikasih. Kami akan dengan senang hati menjawab pertanyaan Anda.
               </p>
             </div>
           </div>
           <!-- Placeholder Gambar -->
           <div class="col-md-4">
             <div class="icon-placeholder">
-              <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+              <img src="assets/img/contact/ilustration_contact.jpg" alt="Placeholder Image">
             </div>
           </div>
         </div>

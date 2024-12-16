@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Klinik Pratama</title>
+  <title>Klinik Medikasih</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -42,17 +42,17 @@
         <!-- Kartu Tim Dokter -->
         <div class="col-md-8">
           <div class="card-custom">
-            <h6 class="fw-bold">Dokter</h6>
-            <h2 class="fw-bold">Tim Dokter Poli Gigi Klinik Pratama</h2>
+            <h6 class="mb-2">Dokter</h6>
+            <h2 class="fw-bold">Tim Dokter Poli Gigi Klinik Medikasih</h2>
             <p>
-              Tim Dokter Poli Gigi Klinik Pratama menyediakan layanan kesehatan gigi yang nyaman dan aman, dipandu oleh dokter-dokter profesional untuk menjaga kesehatan gigi Anda.
+              Tim Dokter Poli Gigi Klinik Medikasih menyediakan layanan kesehatan gigi yang nyaman dan aman, dipandu oleh dokter-dokter profesional untuk menjaga kesehatan gigi Anda.
             </p>
           </div>
         </div>
         <!-- Placeholder Gambar -->
         <div class="col-md-4">
           <div class="icon-placeholder">
-            <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+            <img src="assets/img/doctors/ilustration_doctor.jpg" alt="Placeholder Image">
           </div>
         </div>
       </div>
@@ -68,7 +68,6 @@
             <p>Dokter Gigi Umum</p>
           </div>
         </div>
-      </div>
         <div class="col-md-3 col-6">
           <div class="doctor-card">
             <div class="doctor-icon">
@@ -87,11 +86,10 @@
             <p>Dokter Gigi Anak</p>
           </div>
         </div>
-
         <div class="col-md-3 col-6">
           <div class="doctor-card">
             <div class="doctor-icon">
-              <img src="assets/img/doctors/doctors-1.jpg" alt="Dokter Icon">
+              <img src="assets/img/doctors/doctors-4.jpg" alt="Dokter Icon">
             </div>
             <h6 class="mt-3 fw-bold">Drg. Tia Marlina</h6>
             <p>Dokter Gigi Umum</p>
@@ -100,7 +98,7 @@
         <div class="col-md-3 col-6">
           <div class="doctor-card">
             <div class="doctor-icon">
-              <img src="assets/img/doctors/doctors-1.jpg" alt="Dokter Icon">
+              <img src="assets/img/doctors/doctors-4.jpg" alt="Dokter Icon">
             </div>
             <h6 class="mt-3 fw-bold">Drg. Anggi Cahyo</h6>
             <p>Dokter Gigi Anak</p>

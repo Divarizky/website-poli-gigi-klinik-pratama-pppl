@@ -20,7 +20,7 @@ if ($detail === null) {
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Detail Layanan - Klinik Pratama</title>
+  <title>Detail Layanan - Klinik Medikasih</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -62,7 +62,8 @@ if ($detail === null) {
             <li><?php echo $benefit; ?></li>
             <?php endforeach; ?>
           </ul>
-          <button class="btn btn-primary mt-3">Konsultasi Sekarang!</button>
+          <a class="btn btn-primary mt-3" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Konsultasi Sekarang!</a>
+          <!--<button class="btn btn-primary mt-3" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Konsultasi Sekarang!</button>
         </div>
       </div>
     </div>

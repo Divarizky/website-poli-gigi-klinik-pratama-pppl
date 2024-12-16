@@ -74,21 +74,21 @@ include("template/header.php");
             <td>Dr. Ana Sutanto</td>
             <td>Senin, Rabu, Jumat</td>
             <td>09:00 - 12:00</td>
-            <td><button class="custom-button">Reservasi</button></td>
+            <td><a class="custom-button" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Reservasi</a></td>
           </tr>
           <tr>
             <td>2</td>
             <td>Dr. Budi Hartono</td>
             <td>Senin, Rabu, Jumat</td>
             <td>09:00 - 12:00</td>
-            <td><button class="custom-button">Reservasi</button></td>
+            <td><a class="custom-button" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Reservasi</a></td>
           </tr>
           <tr>
             <td>3</td>
             <td>Dr. Clara Wijaya</td>
             <td>Senin, Rabu, Jumat</td>
             <td>09:00 - 12:00</td>
-            <td><button class="custom-button">Reservasi</button></td>
+            <td><a class="custom-button" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Reservasi</a></td>
           </tr>
         </tbody>
       </table>
@@ -104,7 +104,7 @@ include("template/header.php");
             <h2>Konsultasi Sekarang!</h2>
             <p>Hubungi kami atau kunjungi Klinik Pratama</p>
           </div>
-          <button class="custom-button">Reservasi</button>
+          <td><a class="custom-button" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Reservasi</a></td>
         </div>
       </div>
     </div>

@@ -10,7 +10,6 @@
 
 .card-custom h6 {
   font-size: 16px;
-  text-transform: uppercase;
   margin-bottom: 10px;
   color: white;
 }
@@ -19,22 +18,28 @@
   font-size: 32px;
   font-weight: bold;
   color: white;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.card-custom p {
+  margin: 0 0 16px;
+  color: white;
 }
 
 /* Placeholder Gambar */
 .icon-placeholder {
-  background-color: #f0f0f0;
-  border-radius: 10px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 250px; /* Tinggi yang lebih besar untuk placeholder gambar */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px; /* Jarak antara placeholder dan elemen lain */
+  height: 250px;/*Tinggiyanglebihbesaruntukplaceholdergambar*/
+  margin-bottom: 30px;/*Jarakantaraplaceholderdanelemenlain*/
 }
 
 .icon-placeholder img {
-  max-width: 80%; /* Ukuran gambar sedikit lebih besar */
+  max-width: 80%; /*Ukurangambarsedikitlebihbesar*/
+  border-radius: 20px;
 }
 
 /* Kartu Dokter */
@@ -69,5 +74,10 @@
 .doctor-icon img {
   width: 80px;
   height: 80px;
-  filter: brightness(0.9); /* Sedikit lebih cerah untuk gambar dokter */
-  border
+  filter: brightness(0.9);/*Sedikitlebihcerahuntukgambardokter*/
+  border-radius: 10px;
+  -webkit-border-radius: 1;
+  -moz-border-radius: 1;
+  -ms-border-radius: 1;
+  -o-border-radius: 1;
+}

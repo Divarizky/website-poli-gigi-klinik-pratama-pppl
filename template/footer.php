@@ -1,6 +1,6 @@
 <div class="container-copyright">
   <div class="container copyright text-left mt-4">
-    <p>© 2024 Poli Gigi Klinik Pratama</p>
+    <p>© 2024 Poli Gigi Klinik Medikasih</p>
   </div>
 </div>
 
