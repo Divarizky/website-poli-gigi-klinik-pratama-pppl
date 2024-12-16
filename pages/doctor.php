@@ -1,4 +1,12 @@
-<?php include("../template/header.php"); ?>
+<?php
+include("../template/header.php");
+
+// konfigurasi database
+include('../Admin/config/config_query.php');
+
+// Ambil data dokter dari database
+$result_dokter = bacaSemuaDokter();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,83 +42,61 @@
 
 <body>
 
-<main class="main">
+  <main class="main">
 
-  <div class="dokter my-5">
-    <div class="container">
-      <div class="row g-4">
-        <!-- Kartu Tim Dokter -->
-        <div class="col-md-8">
-          <div class="card-custom">
-            <h6 class="mb-2">Dokter</h6>
-            <h2 class="fw-bold">Tim Dokter Poli Gigi Klinik Medikasih</h2>
-            <p>
-              Tim Dokter Poli Gigi Klinik Medikasih menyediakan layanan kesehatan gigi yang nyaman dan aman, dipandu oleh dokter-dokter profesional untuk menjaga kesehatan gigi Anda.
-            </p>
+    <div class="dokter my-5">
+      <div class="container">
+        <div class="row g-4">
+          <!-- Kartu Tim Dokter -->
+          <div class="col-md-8">
+            <div class="card-custom">
+              <h6 class="mb-2">Dokter</h6>
+              <h2 class="fw-bold">Tim Dokter Poli Gigi Klinik Medikasih</h2>
+              <p>
+                Tim Dokter Poli Gigi Klinik Medikasih menyediakan layanan kesehatan gigi yang nyaman dan aman, dipandu oleh dokter-dokter profesional untuk menjaga kesehatan gigi Anda.
+              </p>
+            </div>
+          </div>
+          <!-- Placeholder Gambar -->
+          <div class="col-md-4">
+            <div class="icon-placeholder">
+              <img src="assets/img/doctors/ilustration_doctor.jpg" alt="Placeholder Image">
+            </div>
           </div>
         </div>
-        <!-- Placeholder Gambar -->
-        <div class="col-md-4">
-          <div class="icon-placeholder">
-            <img src="assets/img/doctors/ilustration_doctor.jpg" alt="Placeholder Image">
-          </div>
-        </div>
-      </div>
 
-      <!-- Daftar Dokter -->
-      <div class="row mt-5 text-center g-4">
-        <div class="col-md-3 col-6">
-          <div class="doctor-card">
-            <div class="doctor-icon">
-              <img src="assets/img/doctors/doctors-1.jpg" alt="Dokter Icon">
-            </div>
-            <h6 class="mt-3 fw-bold">Drg. Andi Wijaya</h6>
-            <p>Dokter Gigi Umum</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="doctor-card">
-            <div class="doctor-icon">
-              <img src="assets/img/doctors/doctors-2.jpg" alt="Dokter Icon">
-            </div>
-            <h6 class="mt-3 fw-bold">Drg. Rina Puspita</h6>
-            <p>Dokter Gigi Umum</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="doctor-card">
-            <div class="doctor-icon">
-              <img src="assets/img/doctors/doctors-3.jpg" alt="Dokter Icon">
-            </div>
-            <h6 class="mt-3 fw-bold">Drg. Budi Santoso</h6>
-            <p>Dokter Gigi Anak</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="doctor-card">
-            <div class="doctor-icon">
-              <img src="assets/img/doctors/doctors-4.jpg" alt="Dokter Icon">
-            </div>
-            <h6 class="mt-3 fw-bold">Drg. Tia Marlina</h6>
-            <p>Dokter Gigi Umum</p>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div class="doctor-card">
-            <div class="doctor-icon">
-              <img src="assets/img/doctors/doctors-4.jpg" alt="Dokter Icon">
-            </div>
-            <h6 class="mt-3 fw-bold">Drg. Anggi Cahyo</h6>
-            <p>Dokter Gigi Anak</p>
-          </div>
+        <!-- Daftar Dokter -->
+        <div class="row mt-5 text-center g-4">
+          <?php
+          // Cek apakah data dokter tersedia
+          if ($result_dokter->num_rows > 0) {
+            while ($dokter = $result_dokter->fetch_assoc()) {
+              // Tentukan path foto dokter
+              $foto_dokter = !empty($dokter['foto_dokter']) ? "Admin/assets/images/" . htmlspecialchars($dokter['foto_dokter']) : "Admin/assets/images/default.jpg";
+
+              // Tampilkan data dokter dalam format card
+              echo '<div class="col-md-3 col-6">';
+              echo '  <div class="doctor-card">';
+              echo '    <div class="doctor-icon">';
+              echo '      <img src="' . $foto_dokter . '" alt="Dokter Icon">';
+              echo '    </div>';
+              echo '    <h6 class="mt-3 fw-bold">' . htmlspecialchars($dokter['nama_dokter']) . '</h6>';
+              echo '    <span>' . htmlspecialchars($dokter['deskripsi_dokter']) . '</span>';
+              echo '  </div>';
+              echo '</div>';
+            }
+          } else {
+            // Pesan jika tidak ada data dokter
+            echo '<div class="col-12"><p>Tidak ada data dokter yang tersedia.</p></div>';
+          }
+          ?>
         </div>
       </div>
     </div>
-  </div>
 
-</main>
+  </main>
 
-<?php include("../template/footer.php"); ?>
+  <?php include("../template/footer.php"); ?>
 
 </body>
 

@@ -1,9 +1,9 @@
 <?php
 // Memulai session
 session_start();
-if (!isset($_SESSION['username']) || time() > $_SESSION['expire_time']) {
+if (!isset($_SESSION['username']) || !isset($_SESSION['id_admin']) || time() > $_SESSION['expire_time']) {
   session_destroy();
-  header('Location: ../Admin/pages/login.html');
+  header('Location: ../pages/login.html');
   exit();
 }
 $_SESSION['expire_time'] = time() + 1800; // Perpanjang sesi 30 menit
@@ -43,6 +43,7 @@ if (isset($_GET['type'], $_GET['id'])) {
     $stmtDelete = $conn->prepare($sqlDelete);
     $stmtDelete->bind_param("i", $id);
   } elseif ($type === 'pasien') {
+
     // Hapus data pasien dari database
     $sqlDelete = "DELETE FROM tb_pasien WHERE id_pasien = ?";
     $stmtDelete = $conn->prepare($sqlDelete);

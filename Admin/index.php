@@ -73,10 +73,10 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
                                     echo "<td>" . $no++ . "</td>";
 
                                     // Menampilkan path foto dokter berdasarkan id_dokter
-                                    $photoPath = "../Admin/assets/images/placeholder.jpg"; // Default path jika gambar tidak ditemukan
+                                    $photoPath = "assets/images/placeholder.jpg"; // Default path jika gambar tidak ditemukan
 
                                     if (!empty($dokter['foto_dokter'])) {
-                                        $filePath = "../Admin/assets/images/" . $dokter['foto_dokter'];
+                                        $filePath = "assets/images/" . $dokter['foto_dokter'];
 
                                         // Tambahkan validasi file_exists dan id_dokter
                                         if (file_exists($filePath)) {

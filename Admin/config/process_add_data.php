@@ -5,7 +5,7 @@ include 'config_query.php'; // Pastikan koneksi database tersedia
 session_start();
 if (!isset($_SESSION['username']) || !isset($_SESSION['id_admin']) || time() > $_SESSION['expire_time']) {
     session_destroy();
-    header('Location: ../Admin/pages/login.html');
+    header('Location: ../pages/login.html');
     exit();
 }
 $_SESSION['expire_time'] = time() + 1800; // Perpanjang sesi 30 menit
@@ -62,20 +62,58 @@ elseif ($type === 'dokter') {
     $nama_dokter = $_POST['name'];
     $hari_praktik = $_POST['hari_praktik'];
     $jam_praktik = $_POST['jam_praktik'];
-    $deskripsi_dokter = $_POST['description'];
+    // Bersihkan deskripsi dari tag HTML
+    $deskripsi_dokter = isset($_POST['description']) ? strip_tags($_POST['description']) : '';
+    $tanggal_update = date('Y-m-d H:i:s');
 
-    $sql = "INSERT INTO tb_dokter (id_admin, nama_dokter, deskripsi_dokter, hari_praktik, jam_praktik, tanggal_update) 
-            VALUES (?, ?, ?, ?, ?, NOW())";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("issss", $id_admin, $nama_dokter, $deskripsi_dokter, $hari_praktik, $jam_praktik);
+    // Default nama file foto
+    $foto_dokter = '';
 
-    if ($stmt->execute()) {
-        echo "<script>alert('Data Dokter berhasil ditambahkan!'); window.location.href = '../index.php';</script>";
-    } else {
-        echo "<script>alert('Terjadi kesalahan saat menambahkan data dokter!'); window.history.back();</script>";
+    // Simpan data awal ke database tanpa foto
+    $sqlInsert = "INSERT INTO tb_dokter (id_admin, nama_dokter, deskripsi_dokter, hari_praktik, jam_praktik, tanggal_update,     foto_dokter) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmtInsert = $conn->prepare($sqlInsert);
+    $stmtInsert->bind_param("issssss", $id_admin, $nama_dokter, $deskripsi_dokter, $hari_praktik, $jam_praktik, $tanggal_update, $foto_dokter);
+
+    if ($stmtInsert->execute()) {
+        // Ambil id_dokter yang baru ditambahkan
+        $id_dokter = $conn->insert_id;
+
+        // Proses upload foto jika ada
+        if (!empty($_FILES['photo']['name'])) {
+            $tmp = explode('.', $_FILES['photo']['name']);
+            $ext = strtolower(end($tmp));
+            $allowed_ext = ["png", "jpg", "jpeg"];
+            $max_size = 5120000; // Maksimal 5MB
+
+            if (in_array($ext, $allowed_ext) && $_FILES['photo']['size'] <= $max_size) {
+                // Nama file baru
+                $new_name = "dokter_{$id_dokter}_{$id_admin}_" . time() . ".{$ext}";
+                $target_dir = "../assets/images/";
+                $target_file = $target_dir . basename($new_name);
+
+                // Pindahkan file ke direktori
+                if (!move_uploaded_file($_FILES['photo']['tmp_name'], $target_file)) {
+                    throw new Exception('Gagal mengupload file!');
+                }
+
+                // Update foto_dokter di database
+                $sqlUpdatePhoto = "UPDATE tb_dokter SET foto_dokter = ? WHERE id_dokter = ?";
+                $stmtUpdatePhoto = $conn->prepare($sqlUpdatePhoto);
+                $stmtUpdatePhoto->bind_param("si", $new_name, $id_dokter);
+                $stmtUpdatePhoto->execute();
+            } else {
+                echo "<script>alert('Gagal mengupload file!'); window.history.back();</script>";
+                exit();
+            }
+        } else {
+            echo "<script>alert('Format file tidak valid atau ukuran melebihi 5MB!'); window.history.back();</script>";
+            exit();
+        }
     }
+    echo "<script>alert('Data Dokter berhasil ditambahkan!'); window.location.href = '../index.php';</script>";
 } else {
-    echo "<script>alert('Tipe data tidak valid!'); window.history.back();</script>";
+    echo "<script>alert('Terjadi kesalahan saat menambahkan data dokter!'); window.history.back();</script>";
 }
 
 $conn->close();

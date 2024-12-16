@@ -1,5 +1,8 @@
 <?php
 include("template/header.php");
+
+// konfigurasi database
+include("Admin/config/config_query.php");
 ?>
 
 <head>
@@ -69,27 +72,28 @@ include("template/header.php");
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Dr. Ana Sutanto</td>
-            <td>Senin, Rabu, Jumat</td>
-            <td>09:00 - 12:00</td>
-            <td><a class="custom-button" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Reservasi</a></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Dr. Budi Hartono</td>
-            <td>Senin, Rabu, Jumat</td>
-            <td>09:00 - 12:00</td>
-            <td><a class="custom-button" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Reservasi</a></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Dr. Clara Wijaya</td>
-            <td>Senin, Rabu, Jumat</td>
-            <td>09:00 - 12:00</td>
-            <td><a class="custom-button" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Reservasi</a></td>
-          </tr>
+          <?php
+          // Ambil data semua dokter
+          $result_dokter = bacaSemuaDokter();
+
+          // Cek jika ada data dokter
+          if ($result_dokter->num_rows > 0) {
+            $no = 1; // Nomor urut baris
+            while ($dokter = $result_dokter->fetch_assoc()) {
+              echo "<tr>";
+              echo "<td>" . $no++ . "</td>";
+              echo "<td>" . htmlspecialchars($dokter['nama_dokter']) . "</td>";
+              echo "<td>" . htmlspecialchars($dokter['hari_praktik']) . "</td>";
+              echo "<td>" . htmlspecialchars($dokter['jam_praktik']) . "</td>";
+              // Tombol untuk reservasi
+              echo "<td><a class='custom-button' href='https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A'>Reservasi</a></td>";
+              echo "</tr>";
+            }
+          } else {
+            // Jika tidak ada dokter, tampilkan pesan ini
+            echo "<tr><td colspan='5'>Tidak ada jadwal dokter yang tersedia.</td></tr>";
+          }
+          ?>
         </tbody>
       </table>
     </div>
