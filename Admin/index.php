@@ -5,7 +5,7 @@ session_start();
 // Mengecek apakah user sudah login atau session timeout
 if (!isset($_SESSION['username']) || !isset($_SESSION['id_admin']) || time() > $_SESSION['expire_time']) {
     session_destroy();
-    header('Location: ../Admin/pages/login.html'); // Redirect ke halaman login jika belum login atau session habis
+    header('Location: ../pages/login.html'); // Redirect ke halaman login jika belum login atau session habis
     exit();
 }
 

@@ -2,22 +2,23 @@
 include("../template/header.php");
 
 // Fungsi untuk mengambil data layanan berdasarkan type
-function getLayananByType($type) {
-    $layanan = [
-        'poli-gigi' => [
-            ['name' => 'Scalling', 'image' => 'assets/img/layanan/scalling.png', 'description' => 'Pembersihan karang gigi'],
-            ['name' => 'Tambal Gigi', 'image' => 'assets/img/layanan/tambal.png', 'description' => 'Perawatan gigi berlubang'],
-            ['name' => 'Perawatan Syaraf Gigi', 'image' => 'assets/img/layanan/perawatan_syaraf.png', 'description' => 'Perawatan syaraf gigi'],
-            ['name' => 'Behel Gigi', 'image' => 'assets/img/layanan/behel.png', 'description' => 'Perawatan behel gigi'],
-            ['name' => 'Veneer Gigi', 'image' => 'assets/img/layanan/veneer.png', 'description' => 'Perawatan veneer gigi'],
-            ['name' => 'Bleaching Gigi', 'image' => 'assets/img/layanan/bleaching.png', 'description' => 'Pemutihan gigi'],
-            ['name' => 'Pencabutan Gigi', 'image' => 'assets/img/layanan/pencabutan.png', 'description' => 'Pencabutan gigi'],
-            ['name' => 'Perawatan Gigi Anak', 'image' => 'assets/img/layanan/perawatan_gigi.png', 'description' => 'Perawatan gigi anak'],
-        ],
-        // Tambahkan kategori lain yang dibutuhkan
-    ];
+function getLayananByType($type)
+{
+  $layanan = [
+    'poli-gigi' => [
+      ['name' => 'Scalling', 'image' => 'assets/img/layanan/scalling.png', 'description' => 'Pembersihan karang gigi'],
+      ['name' => 'Tambal Gigi', 'image' => 'assets/img/layanan/tambal.png', 'description' => 'Perawatan gigi berlubang'],
+      ['name' => 'Perawatan Syaraf Gigi', 'image' => 'assets/img/layanan/perawatan_syaraf.png', 'description' => 'Perawatan syaraf gigi'],
+      ['name' => 'Behel Gigi', 'image' => 'assets/img/layanan/behel.png', 'description' => 'Perawatan behel gigi'],
+      ['name' => 'Veneer Gigi', 'image' => 'assets/img/layanan/veneer.png', 'description' => 'Perawatan veneer gigi'],
+      ['name' => 'Bleaching Gigi', 'image' => 'assets/img/layanan/bleaching.png', 'description' => 'Pemutihan gigi'],
+      ['name' => 'Pencabutan Gigi', 'image' => 'assets/img/layanan/pencabutan.png', 'description' => 'Pencabutan gigi'],
+      ['name' => 'Perawatan Gigi Anak', 'image' => 'assets/img/layanan/perawatan_gigi.png', 'description' => 'Perawatan gigi anak'],
+    ],
+    // Tambahkan kategori lain yang dibutuhkan
+  ];
 
-    return $layanan[$type] ?? [];
+  return $layanan[$type] ?? [];
 }
 
 // Mendapatkan type dari query string
@@ -85,16 +86,16 @@ $layananData = getLayananByType($type);
     <!-- Daftar Layanan -->
     <div class="row mt-5 g-4">
       <?php foreach ($layananData as $layanan): ?>
-      <div class="col-md-3 col-6">
-        <div class="service-card">
-          <div class="service-icon">
-            <img src="<?php echo $layanan['image']; ?>" alt="<?php echo $layanan['name']; ?>">
+        <div class="col-md-3 col-6">
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="<?php echo $layanan['image']; ?>" alt="<?php echo $layanan['name']; ?>">
+            </div>
+            <h6><?php echo $layanan['name']; ?></h6>
+            <p><?php echo $layanan['description']; ?></p>
+            <a href="pages/detail_service.php?layanan=<?php echo urlencode($layanan['name']); ?>" class="btn btn-primary mt-3">Lihat Detail</a>
           </div>
-          <h6><?php echo $layanan['name']; ?></h6>
-          <p><?php echo $layanan['description']; ?></p>
-          <a href="pages/detailservice.php?layanan=<?php echo urlencode($layanan['name']); ?>" class="btn btn-primary mt-3">Lihat Detail</a>
         </div>
-      </div>
       <?php endforeach; ?>
     </div>
   </div>
