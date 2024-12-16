@@ -102,7 +102,7 @@ include("template/header.php");
         <div class="konsultasi-card d-flex justify-content-between align-items-center">
           <div>
             <h2>Konsultasi Sekarang!</h2>
-            <p>Hubungi kami atau kunjungi Klinik Pratama</p>
+            <p>Hubungi kami atau kunjungi Klinik Medikasih</p>
           </div>
           <td><a class="custom-button" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Reservasi</a></td>
         </div>
@@ -142,10 +142,10 @@ include("template/header.php");
         <div class="col-lg-3 col-md-5 footer-links">
           <h4>Sitemap</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Tentang Kami</a></li>
-            <li><a href="#">Layanan</a></li>
-            <li><a href="#">Kontak</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="pages/about.php">Tentang Kami</a></li>
+            <li><a href="pages/service.php">Layanan</a></li>
+            <li><a href="pages/contact_us.php">Kontak</a></li>
             <!--<li><a href="#">Media Social</a></li>-->
           </ul>
         </div>
@@ -165,8 +165,8 @@ include("template/header.php");
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Media Social</h4>
           <div class="social-links d-flex mt-1">
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
           </div>
           <!--<ul>
         <li><a href="#">Molestiae accusamus iure</a></li>
