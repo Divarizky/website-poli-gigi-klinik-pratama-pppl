@@ -45,10 +45,6 @@
   .icon-placeholder img {
     max-width: 75%;
     /*Ukurangambarplaceholder*/border-radius: 20px;
-    -webkit-border-radius:;
-    -moz-border-radius:;
-    -ms-border-radius:;
-    -o-border-radius:;
 }
   
   /* Kartu layanan (Scalling, Tambal Gigi, dll.) */
@@ -94,3 +90,22 @@
     }
   }
   
+/*===== Halaman Detail Layanan =====*/
+/* Memberikan jarak kiri dan kanan */
+.detail-layanan {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.information-detail-service {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  /* Jarak lebih besar untuk perangkat dengan lebar layar lebih besar */
+  .detail-layanan {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}

@@ -15,7 +15,6 @@ include("../template/header.php");
 </head>
 
 <main class="main">
-
   <div class="about mt-5">
     <div class="row g-4">
       <!-- Kartu Tentang Kami -->

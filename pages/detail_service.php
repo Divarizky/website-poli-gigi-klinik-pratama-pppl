@@ -9,8 +9,8 @@ $layanan = $_GET['layanan'] ?? 'Scalling';
 $detail = $services[$layanan] ?? null;
 
 if ($detail === null) {
-    echo "Layanan tidak ditemukan.";
-    exit();
+  echo "Layanan tidak ditemukan.";
+  exit();
 }
 ?>
 
@@ -47,29 +47,28 @@ if ($detail === null) {
 </head>
 
 <main class="main">
-
-  <div class="detail-layanan my-5">
-    <div class="row g-4">
-      <div class="col-md-12">
-        <div class="card-custom">
+  <!-- Kartu Tentang Kami -->
+  <div class="detail-layanan mt-5">
+    <div class="col-md-12">
+      <div class="card-custom">
+        <div class="row g-4">
           <h6 class="fw-bold">Detail Layanan</h6>
           <h2 class="fw-bold"><?php echo $detail['title']; ?></h2>
           <p><?php echo $detail['description']; ?></p>
-          <h3>Mengapa <?php echo $layanan; ?>?</h3>
-          <p><?php echo $detail['description']; ?></p>
-          <ul>
-            <?php foreach ($detail['benefits'] as $benefit): ?>
-            <li><?php echo $benefit; ?></li>
-            <?php endforeach; ?>
-          </ul>
-          <a class="btn btn-primary mt-3" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Konsultasi Sekarang!</a>
-          <!--<button class="btn btn-primary mt-3" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Konsultasi Sekarang!</button>
         </div>
+        <a class="btn btn-primary mt-3" href="https://wa.me/6282152588142?text=Hi%2C%20saya%20ingin%20Reservasi%20Layanan%3A%0ANama%3A%0ANo.%20HP%3A%0AAlamat%3A%0ALayanan%3A%0AJumlah%3A">Konsultasi Sekarang!</a>
+      </div>
+      <div class="information-detail-service">
+        <h3 class="fw-bold">Mengapa <?php echo $layanan; ?>?</h3>
+        <p><?php echo $detail['description']; ?></p>
+        <ul>
+          <?php foreach ($detail['benefits'] as $benefit): ?>
+            <li><?php echo $benefit; ?></li>
+          <?php endforeach; ?>
+        </ul>
       </div>
     </div>
   </div>
-
-  </body>
 
   <?php
   include("../template/footer.php");
