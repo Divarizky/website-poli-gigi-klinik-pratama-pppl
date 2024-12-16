@@ -22,6 +22,49 @@ Website ini dibangun dengan menggunakan:
 - Database: MySQL
 - Operasi CRUD: Mengelola data dokter, pasien, dan akun admin
 
+## Cara Penggunaan Website
+### 1. Clone Repository
+Buka terminal atau Git Bash dan jalankan perintah berikut:
+
+```
+git clone https://github.com/Divarizky/website-poli-gigi-klinik-pratama-pppl.git 
+```
+*Lakukan clone di dalam folder direktori `C:\xampp\htdocs`
+
+### 2. Konfigurasi Database
+1. Buka XAMPP dan pastikan Apache dan MySQL sudah berjalan.
+2. Buka PhpMyAdmin melalui http://localhost/phpmyadmin.
+3. Buat database baru dengan nama db_poligigi_pratama.
+4. Import file database di PhpMyAdmin:
+   - Navigasikan ke tab Import.
+   - Pilih file db_poligigi_pratama.sql yang ada di folder `Admin/db/db_poligigi_pratama` yang terdapat di dalam folder Proyek.
+   - Klik Go untuk memulai proses import.
+
+### 3. Konfigurasi Koneksi Database
+Pastikan konfigurasi koneksi database sudah sesuai. File konfigurasi terdapat di:
+```
+Admin/config/config_query.php
+```
+
+sesuaikan bagian berikut:
+``` php
+$servername = "localhost";
+$username = "root";                // Default MySQL username
+$password = "";                    // Password MySQL (kosong jika default)
+$dbname = "db_poligigi_pratama";   // Pastikan nama database sesuai
+```
+
+### 4. Jalankan Website
+1. Letakkan atau pastikan folder proyek terletak di direktori htdocs XAMPP.
+2. Akses website melalui browser:
+   - Halaman User: http://localhost/website-poli-gigi-klinik-pratama-pppl/index.php
+   - Halaman Admin: http://localhost/website-poli-gigi-klinik-pratama-pppl/Admin/pages/login.html
+
+### 5. Login Admin
+Gunakan akun admin default yang sudah tersedia di dalam database:
+   - Username: `admin`
+   - Password: `admin123`
+
 ## Kontribusi
 Proyek ini dikembangkan oleh TIM 1 mahasiswa 4IA03 Universitas Gunadarma sebagai bentuk implementasi manajemen proyek dan pengelolaan perangkat lunak dengan klien.
 
