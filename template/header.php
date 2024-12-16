@@ -38,6 +38,7 @@
       <div class="container position-relative d-flex align-items-center justify-content-end">
         <a href="index.php" class="logo d-flex align-items-center me-auto">
           <img src="assets/img/logo.png" alt="Logo Klinik">
+          <h3 class="sitename">Klinik Medikasih</h3>
         </a>
         <nav id="navmenu" class="navmenu">
           <ul>
