@@ -52,11 +52,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body onload="showMessage('<?php echo $message; ?>')">
   <div class="dashboard-container">
     <div class="sidebar" id="sidebar">
-      <h2 id="logo">Logo</h2>
+      <img id="logo" src="../assets/icons/logo.jpg" alt="Logo Klinik Poli Gigi">
       <nav>
         <ul class="sidebar-nav" id="sidebar-nav">
-          <li><a href="../index.php" id="dashboard-title">Manajemen Dashboard Admin</a></li>
-          <li><a href="informasi_klinik.php" id="clinic-info-link">Informasi Klinik</a></li>
+          <li>
+            <a href="../index.php" id="dashboard-title">
+              <img class="sidebar-icon" src="../assets/icons/dashboard-icon.png" alt="Dashboard Icon">
+              Manajemen Dashboard Admin
+            </a>
+          </li>
+          <li>
+            <a href="#" id="clinic-info-link">
+              <img class="sidebar-icon" src="../assets/icons/info-icon.png" alt="Clinic Icon">
+              Informasi Klinik
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -66,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <header>
           <h3 id="heading-main-content">
             <span class="sub-heading-main-content">
-              <a href="../index.php">Manajemen Dashboard /</a>
+              <a href="../index.php">Manajemen Dashboard Admin /</a>
             </span>
             <span>Informasi Klinik</span>
           </h3>

@@ -5,7 +5,7 @@ session_start();
 // Mengecek apakah user sudah login atau session timeout
 if (!isset($_SESSION['username']) || !isset($_SESSION['id_admin']) || time() > $_SESSION['expire_time']) {
     session_destroy();
-    header('Location: ../pages/login.html'); // Redirect ke halaman login jika belum login atau session habis
+    header('Location: ../Admin/pages/login.html'); // Redirect ke halaman login jika belum login atau session habis
     exit();
 }
 
@@ -27,11 +27,21 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
     <div class="dashboard-container">
         <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
-            <h2 id="logo">Logo</h2>
+            <img id="logo" src="../assets/img/logo.jpg" alt="Logo Klinik Poli Gigi">
             <nav>
                 <ul class="sidebar-nav" id="sidebar-nav">
-                    <li><a href="#" id="dashboard-title">Manajemen Dashboard Admin</a></li>
-                    <li><a href="../Admin/pages/informasi_klinik.php" id="clinic-info-link">Informasi Klinik</a></li>
+                    <li>
+                        <a href="#" id="dashboard-title">
+                            <img class="sidebar-icon" src="../Admin/assets/icons/dashboard-icon.png" alt="Dashboard Icon">
+                            Manajemen Dashboard Admin
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../Admin/pages/informasi_klinik.php" id="clinic-info-link">
+                            <img class="sidebar-icon" src="../Admin/assets/icons/info-icon.png" alt="Clinic Icon">
+                            Informasi Klinik
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -46,7 +56,9 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
             <!-- Tabel Dokter -->
             <section id="doctor-section" class="container-section">
                 <h2 id="doctor-title">Daftar Dokter</h2>
-                <button class="btn-add" id="add-doctor-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=dokter'">Tambah Data</button>
+                <button class="btn-add" id="add-doctor-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=dokter'">
+                    <img class="button-icon" src="../Admin/assets/icons/add-icon.png" alt="Tambah"> Tambah Data
+                </button>
                 <div class="table-responsive" id="doctor-table-container">
                     <table class="custom-table" id="doctor-table">
                         <thead>
@@ -117,7 +129,9 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
             <!-- Tabel Pasien -->
             <section id="patient-section" class="container-section">
                 <h2 id="patient-title">Daftar Pasien</h2>
-                <button class="btn-add" id="add-patient-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=pasien'">Tambah Data</button>
+                <button class="btn-add" id="add-patient-btn" onclick="window.location.href='../Admin/pages/tambah_data.php?type=pasien'">
+                    <img class="button-icon" src="../Admin/assets/icons/add-icon.png" alt="Tambah">Tambah Data
+                </button>
                 <div class="table-responsive" id="patient-table-container">
                     <table class="custom-table" id="patient-table">
                         <thead>
