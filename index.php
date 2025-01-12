@@ -117,32 +117,30 @@ include("Admin/config/config_query.php");
   <footer id="footer" class="footer light-background">
     <div class="container footer-top">
       <div class="row gy-4">
+
+        <?php
+        // Ambil data kontak dan lokasi
+        $data_klinik = bacaInformasiKlinik();
+
+        // Cek jika ada data klinik
+        if ($data_klinik) {
+          $kontak = htmlspecialchars($data_klinik['no_telp']);
+          $lokasi = nl2br(htmlspecialchars($data_klinik['lokasi']));
+        } else {
+          $kontak = "Kontak tidak tersedia";
+          $lokasi = "Lokasi tidak tersedia";
+        }
+        ?>
+
+        <!-- Lokasi -->
         <div class="col-lg-4 col-md-5 footer-links">
           <h4>Lokasi</h4>
           <ul>
-            <li><a>Jl. Taman Malaka Selatan No. 12 - 14 RT.2/RW.2, Pd. Klp.,
-                <br>Kec. Duren Sawit, Kota Jakarta Timur, daerah Khusus Ibukota Jakarta 13450
-              </a></li>
+            <li><a><?php echo $lokasi; ?></a></li>
           </ul>
         </div>
-        <!-- <div class="col-lg-4 col-md-6 footer-about">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <h3>Lokasi</h3>
-        <!--<span class="sitename">Lokasi</span>
-      </a>
-      
-      <!--<div class="footer-contact pt-3">
-        <ul>
-          <li><a>Jl. Taman Malaka Selatan No. 12 - 14 RT.2/RW.2, Pd. Klp., Kec. Duren Sawit </a></li>
-          <li><a>Kota Jakarta Timur, daerah Khusus Ibukota Jakarta 13450 </a></li>
-        </ul>
-        <!--<p>Jl. Taman Malaka Selatan No. 12 - 14 RT.2/RW.2, Pd. Klp., Kec. Duren Sawit </p>
-        <p>Kota Jakarta Timur, daerah Khusus Ibukota Jakarta 13450 </p>
-        <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-        <p><strong>Email:</strong> <span>info@example.com</span></p>
-      </div>
-    </div>-->
 
+        <!-- Sitemap -->
         <div class="col-lg-3 col-md-5 footer-links">
           <h4>Sitemap</h4>
           <ul>
@@ -150,35 +148,24 @@ include("Admin/config/config_query.php");
             <li><a href="pages/about.php">Tentang Kami</a></li>
             <li><a href="pages/service.php">Layanan</a></li>
             <li><a href="pages/contact_us.php">Kontak</a></li>
-            <!--<li><a href="#">Media Social</a></li>-->
           </ul>
         </div>
 
+        <!-- Kontak -->
         <div class="col-lg-3 col-md-3 footer-links">
           <h4>Kontak</h4>
           <ul>
-            <li><a>+62 812-8869-0514</a></li>
-            <!--<li><a href="#">Web Design</a></li>
-        <li><a href="#">Web Development</a></li>
-        <li><a href="#">Product Management</a></li>
-        <li><a href="#">Marketing</a></li>
-        <li><a href="#">Graphic Design</a></li>-->
+            <li><a><?php echo $kontak; ?></a></li>
           </ul>
         </div>
 
+        <!-- Media Sosial -->
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Media Social</h4>
           <div class="social-links d-flex mt-1">
             <a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a>
             <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
           </div>
-          <!--<ul>
-        <li><a href="#">Molestiae accusamus iure</a></li>
-        <li><a href="#">Excepturi dignissimos</a></li>
-        <li><a href="#">Suscipit distinctio</a></li>
-        <li><a href="#">Dilecta</a></li>
-        <li><a href="#">Sit quas consectetur</a></li>
-      </ul>-->
         </div>
 
       </div>

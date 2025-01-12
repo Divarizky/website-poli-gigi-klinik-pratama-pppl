@@ -1,5 +1,21 @@
 <?php
 include("../template/header.php");
+
+// konfigurasi database
+include("../Admin/config/config_query.php");
+
+// Ambil data kontak dan alamat
+$data_klinik = bacaInformasiKlinik();
+
+if ($data_klinik) {
+  $kontak = htmlspecialchars($data_klinik['no_telp']);
+  $email = htmlspecialchars($data_klinik['email']);
+  $lokasi = nl2br(htmlspecialchars($data_klinik['lokasi']));
+} else {
+  $kontak = "Kontak tidak tersedia";
+  $email = "Email tidak tersedia";
+  $lokasi = "Alamat tidak tersedia";
+}
 ?>
 
 <!DOCTYPE html>
@@ -61,17 +77,18 @@ include("../template/header.php");
 
     <div class="kontak-body">
       <div class="container">
-        <h1>Kontak Kami</h1>
+
+        <!-- Kontak -->
+        <h2>Kontak Kami</h2>
         <p>
-          <i class="fas fa-phone"></i> +6281244513562<br>
-          <i class="fas fa-envelope"></i> pratama@mail.com
+          <i class="fas fa-phone"></i> <?php echo $kontak; ?><br>
+          <i class="fas fa-envelope"></i> <?php echo $email; ?>
         </p><br>
 
+        <!-- Alamat -->
         <p>
-          <h1>Alamat Kami</h1>
-          Jl. Taman Malaka Selatan No. 12-14 RT.2/RW.2<br>
-          Pd. Klp., Kec. Duren Sawit, Kota Jakarta Timur<br>
-          Daerah Khusus Ibukota Jakarta 13450
+        <h2>Alamat Kami</h2>
+        <?php echo $lokasi; ?>
         </p><br>
       </div>
     </div>
