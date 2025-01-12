@@ -38,14 +38,15 @@ $isDoctor = $type === 'dokter';
             <nav>
                 <ul class="sidebar-nav" id="sidebar-nav">
                     <li><a href="../index.php" id="dashboard-title">Manajemen Dashboard Admin</a></li>
+                    <li><a href="../pages/informasi_klinik.php" id="clinic-info-link">Informasi Klinik</a></li>
                 </ul>
             </nav>
         </div>
         <div class="main-content" id="main-content">
             <main>
                 <header>
-                    <h3 id="heading-tambah-data-title">
-                        <span class="sub-heading-tambah-data">
+                    <h3 id="heading-main-content">
+                        <span class="sub-heading-main-content">
                             <a href="../index.php">Manajemen Dashboard /</a>
                         </span>
                         <span>Tambah Data <?php echo ucfirst($type); ?> </span>

@@ -86,6 +86,8 @@ body {
 }
 
 #welcome-message {
+    opacity: 50%;
+    color: #757575;
     font-size: 24px;
     font-weight: bold;
 }
@@ -513,30 +515,6 @@ header {
     /* Memberikan jarak bawah */
 }
 
-#heading-tambah-data-title {
-    font-size: 1.5rem;
-    font-weight: 400;
-}
-
-#heading-tambah-data-title .sub-heading-tambah-data {
-    font-weight: bold;
-}
-
-#heading-tambah-data-title a {
-    opacity: 50%;
-    color: #757575;
-    text-decoration: none;
-}
-
-#heading-tambah-data-title a:hover {
-    text-decoration: underline;
-}
-
-#heading-tambah-data-title span:last-child {
-    color: #9935D5;
-    font-weight: bold;
-}
-
 .form-label {
     color: #A16DD6;
     font-weight: bold;
@@ -665,31 +643,30 @@ header {
     /* Menambahkan jarak antar kolom */
 }
 
+/* =========================================================
+  Styling umum untuk Heading Main Content di setiap Pages
+========================================================== */
 
-/* ==========================================
-  Styling untuk Halaman Ubah Data
-========================================== */
-
-#heading-ubah-data-title {
+#heading-main-content {
     font-size: 1.5rem;
     font-weight: 400;
 }
 
-#heading-ubah-data-title .sub-heading-ubah-data {
+#heading-main-content .sub-heading-main-content {
     font-weight: bold;
 }
 
-#heading-ubah-data-title a {
+#heading-main-content a {
     opacity: 50%;
     color: #757575;
     text-decoration: none;
 }
 
-#heading-ubah-data-title a:hover {
+#heading-main-content a:hover {
     text-decoration: underline;
 }
 
-#heading-ubah-data-title span:last-child {
+#heading-main-content span:last-child {
     color: #9935D5;
     font-weight: bold;
 }

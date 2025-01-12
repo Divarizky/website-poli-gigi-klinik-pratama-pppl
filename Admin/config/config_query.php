@@ -13,8 +13,49 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// ------ FUNGSI UNTUK TABEL ADMIN ------
+// ------ FUNGSI UNTUK TABEL INFORMASI KLINIK ------
+// Fungsi membaca informasi klinik
+function bacaInformasiKlinik()
+{
+    global $conn;
+    $sql = "SELECT * FROM tb_informasi_klinik WHERE id = 1";
+    $result = $conn->query($sql);
 
+    // Jika data tidak ditemukan, kembalikan nilai default
+    if ($result && $result->num_rows > 0) {
+        return $result->fetch_assoc();
+    } else {
+        return [
+            'no_telp' => '',
+            'email' => '',
+            'lokasi' => ''
+        ];
+    }
+}
+
+// Fungsi memperbarui atau menambahkan informasi klinik
+function perbaruiInformasiKlinik($nomor_telepon, $email, $lokasi)
+{
+    global $conn;
+
+    // Cek apakah data sudah ada
+    $sql = "SELECT id FROM tb_informasi_klinik WHERE id = 1";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        // Update data jika sudah ada
+        $sql = "UPDATE tb_informasi_klinik SET no_telp = ?, email = ?, lokasi = ? WHERE id = 1";
+    } else {
+        // Insert data baru jika belum ada
+        $sql = "INSERT INTO tb_informasi_klinik (no_telp, email, lokasi) VALUES (?, ?, ?)";
+    }
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $nomor_telepon, $email, $lokasi);
+    return $stmt->execute();
+}
+
+// ------ FUNGSI UNTUK TABEL ADMIN ------
 // Fungsi untuk menambahkan admin baru
 function tambahAdmin($name, $username, $password)
 {
@@ -48,67 +89,6 @@ function perbaruiPasswordAdmin($username, $password_baru)
     $sql = "UPDATE tb_admin SET password = '$hashed_password' WHERE username = '$username'";
     return $conn->query($sql);
 }
-
-// // ------ FUNGSI UNTUK TABEL DOKTER ------
-// // Fungsi menambahkan dokter
-// function tambahDokter($foto_dokter, $nama_dokter, $hari_praktik, $jam_praktik, $tanggal_update)
-// {
-//     global $conn;
-//     $sql = "INSERT INTO tb_dokter (foto_dokter, nama_dokter, hari_praktik, jam_praktik, tanggal_update) VALUES ('$foto_dokter', '$nama_dokter', '$hari_praktik', '$jam_praktik', '$tanggal_update')";
-//     return $conn->query($sql);
-// }
-
-// // Fungsi membaca data dokter
-// function bacaSemuaDokter() {
-//     global $conn;
-//     $sql = "SELECT * FROM tb_dokter";
-//     return $conn->query($sql);
-// }
-
-// // Fungsi memperbarui dokter
-// function perbaruiDokter($id_dokter, $foto_dokter, $nama_dokter, $tanggal_update) {
-//     global $conn;
-//     $sql = "UPDATE tb_dokter SET foto_dokter='$foto_dokter', nama_dokter='$nama_dokter', tanggal_update='$tanggal_update' WHERE id_dokter=$id_dokter";
-//     return $conn->query($sql);
-// }
-
-// // Fungsi menghapus dokter
-// function hapusDokter($id_dokter) {
-//     global $conn;
-//     $sql = "DELETE FROM tb_dokter WHERE id_dokter=$id_dokter";
-//     return $conn->query($sql);
-// }
-
-// // ------ FUNGSI UNTUK TABEL PASIEN ------
-// // Fungsi menambahkan pasien
-// function tambahPasien($tanggal_kunjungan, $nama_pasien, $usia, $jenis_kelamin, $kategori, $id_dokter) {
-//     global $conn;
-//     $sql = "INSERT INTO tb_pasien (tanggal_kunjungan, nama_pasien, usia, jenis_kelamin, kategori, id_dokter) VALUES ('$tanggal_kunjungan', '$nama_pasien', $usia, '$jenis_kelamin', '$kategori', $id_dokter)";
-//     return $conn->query($sql);
-// }
-
-// // Fungsi membaca data pasien
-// function bacaSemuaPasien() {
-//     global $conn;
-//     $sql = "SELECT p.id_pasien, p.tanggal_kunjungan, p.nama_pasien, p.usia, p.jenis_kelamin, p.kategori, d.nama_dokter 
-//             FROM tb_pasien p 
-//             JOIN tb_dokter d ON p.id_dokter = d.id_dokter";
-//     return $conn->query($sql);
-// }
-
-// // Fungsi memperbarui pasien
-// function perbaruiPasien($id_pasien, $tanggal_kunjungan, $nama_pasien, $usia, $jenis_kelamin, $kategori, $id_dokter) {
-//     global $conn;
-//     $sql = "UPDATE tb_pasien SET tanggal_kunjungan='$tanggal_kunjungan', nama_pasien='$nama_pasien', usia=$usia, jenis_kelamin='$jenis_kelamin', kategori='$kategori', id_dokter=$id_dokter WHERE id_pasien=$id_pasien";
-//     return $conn->query($sql);
-// }
-
-// // Fungsi menghapus pasien
-// function hapusPasien($id_pasien) {
-//     global $conn;
-//     $sql = "DELETE FROM tb_pasien WHERE id_pasien=$id_pasien";
-//     return $conn->query($sql);
-// }
 
 // ------ FUNGSI UNTUK TABEL DOKTER ------
 // Fungsi menambahkan dokter

@@ -31,6 +31,7 @@ $_SESSION['expire_time'] = time() + 1800; // 30 menit
             <nav>
                 <ul class="sidebar-nav" id="sidebar-nav">
                     <li><a href="#" id="dashboard-title">Manajemen Dashboard Admin</a></li>
+                    <li><a href="../Admin/pages/informasi_klinik.php" id="clinic-info-link">Informasi Klinik</a></li>
                 </ul>
             </nav>
         </div>
