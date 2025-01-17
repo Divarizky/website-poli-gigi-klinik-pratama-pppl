@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2024 at 01:24 PM
+-- Generation Time: Jan 17, 2025 at 07:31 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,6 +70,26 @@ INSERT INTO `tb_dokter` (`id_dokter`, `foto_dokter`, `nama_dokter`, `deskripsi_d
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_informasi_klinik`
+--
+
+CREATE TABLE `tb_informasi_klinik` (
+  `id` int(11) NOT NULL,
+  `no_telp` varchar(15) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `lokasi` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tb_informasi_klinik`
+--
+
+INSERT INTO `tb_informasi_klinik` (`id`, `no_telp`, `email`, `lokasi`) VALUES
+(1, '+6281244513562', 'medikasihpratama@gmail.com', 'Jl. Taman Malaka Selatan No. 12-14 RT.2/RW.2\r\nPd. Klp., Kec. Duren Sawit, Kota Jakarta Timur\r\nDaerah Khusus Ibukota Jakarta 13450');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_pasien`
 --
 
@@ -89,7 +109,8 @@ CREATE TABLE `tb_pasien` (
 --
 
 INSERT INTO `tb_pasien` (`id_pasien`, `tanggal_kunjungan`, `nama_pasien`, `usia`, `jenis_kelamin`, `kategori`, `id_dokter`, `id_admin`) VALUES
-(2, '2024-12-15 11:45:00', 'Diva Rizky', 21, 'L', 'Scalling', 14, 3);
+(2, '2024-12-15 11:45:00', 'Diva Rizky', 21, 'L', 'Scalling', 14, 3),
+(3, '2024-12-17 10:45:00', 'Rahfil Farhan', 21, 'L', 'Tambal Gigi', 14, 3);
 
 --
 -- Indexes for dumped tables
@@ -107,6 +128,12 @@ ALTER TABLE `tb_admin`
 ALTER TABLE `tb_dokter`
   ADD PRIMARY KEY (`id_dokter`),
   ADD KEY `id_admin` (`id_admin`);
+
+--
+-- Indexes for table `tb_informasi_klinik`
+--
+ALTER TABLE `tb_informasi_klinik`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tb_pasien`
@@ -133,10 +160,16 @@ ALTER TABLE `tb_dokter`
   MODIFY `id_dokter` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `tb_informasi_klinik`
+--
+ALTER TABLE `tb_informasi_klinik`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `tb_pasien`
 --
 ALTER TABLE `tb_pasien`
-  MODIFY `id_pasien` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pasien` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
